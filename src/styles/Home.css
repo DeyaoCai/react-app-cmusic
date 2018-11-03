@@ -1,8 +1,147 @@
 .Home {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: #eee;
+  background-color: #666;
+  overflow: scroll;
+}
+
+.home-block{
+  text-align: left;
+  padding: 0 .3rem;
+}
+
+.home-block.fold{
+  height: 9.5rem;
+  overflow: hidden;
+}
+.home-title{
+  display: flex;
+  font-size: .75rem;
+  line-height: 2.5rem;
+  padding: 0 .6rem;
+}
+.home-title *{
+  flex: 1;
+}
+.home-title *:last-child{
+  text-align: right;
+}
+.home-title *:first-child{
+  text-align: left;
+}
+.home-title i{
+  font-size: .5rem;
+}
+.home-list{
+  font-size: 0rem;
+}
+.home-list-item{
+  line-height: 1rem;
+  display: inline-block;
+  padding: .4rem;
+  font-size: .6rem;
+  width: 33%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.home-list-item img{
+  display: block;
+  width: 100%;
+}
+
+.home-block{
+  text-align: left;
+  padding: 0 .3rem;
+}
+
+.home-block.fold{
+  height: 9.5rem;
+  overflow: hidden;
+}
+.home-title{
+  display: flex;
+  font-size: .75rem;
+  line-height: 2.5rem;
+  padding: 0 .6rem;
+}
+.home-title *{
+  flex: 1;
+}
+.home-title *:last-child{
+  text-align: right;
+}
+.home-title *:first-child{
+  text-align: left;
+}
+.home-title i{
+  font-size: .5rem;
+}
+.home-list{
+  font-size: 0rem;
+}
+.home-list-item{
+  line-height: 1rem;
+  display: inline-block;
+  padding: .4rem;
+  font-size: .6rem;
+  width: 33%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.home-list-item img{
+  display: block;
+  width: 100%;
+}
+
+.song-block{
+  text-align: left;
+  padding: 0 .3rem;
+  position: absolute;
+  /*height: 100%;*/
+  /*width: 100%;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  /*transition: all 1s;*/
+  /*transform: translateY(100%);*/
+  /*overflow: scroll;*/
+  /*opacity: 0;*/
+}
+
+.song-block.active{
+  /*transform: rotateY(0);*/
+  /*opacity: 1;*/
+}
+.song-title{
+  display: flex;
+  font-size: .75rem;
+  line-height: 2.5rem;
+  padding: 0 .6rem;
+}
+.song-title *{
+  flex: 1;
+}
+.song-title *:last-child{
+  text-align: right;
+}
+.song-title *:first-child{
+  text-align: left;
+}
+.song-title i{
+  font-size: .5rem;
+}
+.song-list{
+  font-size: 0rem;
+}
+.song-list li{
+  line-height: 1.2rem;
+  padding: .4rem;
+  font-size: .6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

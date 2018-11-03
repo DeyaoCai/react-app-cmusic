@@ -21,7 +21,7 @@ class App extends Component {
       <HashRouter basename="/">
         <div className="App">
           <img src={logo} className="App-logo" alt="logo" />
-          <audio src={this.state.audioInfo.src}></audio>
+          <audio src={this.state.audioInfo.src} id="audio"></audio>
           <Route path="/home" component={Home}/>
           <Route path="/my" component={My}/>
         </div>
