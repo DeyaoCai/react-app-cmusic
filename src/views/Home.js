@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import '../styles/Index.css';
+import '../styles/Home.css';
 
-class Index extends Component {
+class Home extends Component {
   render() {
     return (
-      <div className="App">
-          <img src={logo} className="App-logo" alt="logo" />
-      </div>
+      <div className="Home"></div>
     );
   }
 }
-export default Index;
+export default Home;

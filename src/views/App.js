@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../images/logo.svg';
+import '../styles/App.css';
+
+import {HashRouter,Route} from 'react-router-dom';
+import Home from './Home';
+import My from './My';
 
 class App extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      audioInfo: {src:"",}
+    };
+  };
+  componentDidMount() {
+
+  };
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <HashRouter basename="/">
+        <div className="App">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+          <audio src={this.state.audioInfo.src}></audio>
+          <Route path="/home" component={Home}/>
+          <Route path="/my" component={My}/>
+        </div>
+      </HashRouter>
     );
   }
 }
-
 export default App;
