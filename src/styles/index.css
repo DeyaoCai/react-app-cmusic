@@ -16,5 +16,8 @@ html{
   box-sizing: border-box;
   text-decoration: none;
   font-style: normal;
+  font-family: "思源黑体 CN";
 }
-
+*::-webkit-scrollbar{
+  width: 0;
+}

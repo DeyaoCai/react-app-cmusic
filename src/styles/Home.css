@@ -102,19 +102,19 @@
   text-align: left;
   padding: 0 .3rem;
   position: absolute;
-  /*height: 100%;*/
-  /*width: 100%;*/
-  /*top: 0;*/
-  /*left: 0;*/
-  /*transition: all 1s;*/
-  /*transform: translateY(100%);*/
-  /*overflow: scroll;*/
-  /*opacity: 0;*/
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: all 1s;
+  transform: translateY(100%);
+  overflow: scroll;
+  opacity: 0;
 }
 
 .song-block.active{
-  /*transform: rotateY(0);*/
-  /*opacity: 1;*/
+  transform: rotateY(0);
+  opacity: 1;
 }
 .song-title{
   display: flex;

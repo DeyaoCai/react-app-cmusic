@@ -1,61 +1,78 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import actions from '../actions';
+
 import '../styles/Home.css';
 import http from "../http/http.js";
 import ListItemPic from "../components/units/ListItemPic.js";
 import SongList from "../components/units/SongList.js";
+console.log(actions)
 
-class Home extends Component {
-  constructor(){
-    super();
-    this.state = {
-      songSheet: {name: "推荐歌单",list:[]},
-      songList: {name: "最新音乐",list:[]},
-      djprogramList: {name: "主播电台",list:[]},
-      playList:{name: "歌曲列表",list:[]},
-    };
-    http.personalized()(res => {this.setState({
-      songSheet: {name: "推荐歌单",
-        list: res.result.map(item =>{
-          return {
-            name: item.name, img: item.picUrl, id: item.id,
-            handelClick: (item)=>{
-              http.playlistDetail({id: item.id})(res=>{
-                this.setState({
-                  playListShow: true,
-                  playList: {name: "歌曲列表",list: res.playlist.tracks},
-                });
-              })
-            }
-          }
-        })
-      }
-    });});
+const Home = (conf) => {
+  const {
+    songSheet,songList,djprogramList,playList,
+    getPlayList, playASong,
+    toggleSongSheetState,toggleSongListtState, toggleDjprogramList, togglePlayList,
+  } = conf;
+  return (
+    <div className="Home">
+      <div><input type="text"/><div >播放界面</div></div>
+      <ListItemPic config={songSheet} toggleState={toggleSongSheetState} getList={getPlayList}/>
+      <ListItemPic config={songList} toggleState={toggleSongListtState} />
+      <ListItemPic config={djprogramList} toggleState={toggleDjprogramList} />
+      <SongList config={playList} toggleState={togglePlayList} playASong={playASong}/>
+    </div>
+  );
+};
 
-    http.personalizedNewsong()(res => {this.setState({
-      songList: {name: "最新音乐",
-        list: res.result.map(item=>{
-          return {name: item.name, img: item.song.album.picUrl, id: item.id,}
-        })
-      }
-    });});
+const mapStateToProps = state => {
+  return {...state.cmusichome}
+};
 
-    http.personalizedDjprogram()(res => {this.setState({
-      djprogramList: {name: "主播电台",
-        list: res.result.map(item=>{return {name: item.name, img: item.picUrl, id: item.id,}})
-      }
-    });});
-
-
-  };
-  render() {
-    return (
-      <div className="Home">
-        <ListItemPic config={this.state.songSheet}/>
-        <ListItemPic config={this.state.songList}/>
-        <ListItemPic config={this.state.djprogramList}/>
-        <SongList config={this.state.playList}/>
-      </div>
-    );
+const mapDispatchToProps = dispatch => {
+  http.personalized()(res => {
+    dispatch(actions.updateSongSheet(
+      res.result.map(item => ({
+        name: item.name, img: item.picUrl, id: item.id,
+      }))
+    ))
+  });
+  http.personalizedNewsong()(res => {
+    dispatch(actions.updateSongList(
+      res.result.map(item=>{
+        return {name: item.name, img: item.song.album.picUrl, id: item.id,}
+      })
+    ))
+  });
+  http.personalizedDjprogram()(res => {
+    dispatch(actions.updateDjprogramList(res.result.map(item=>{return {name: item.name, img: item.picUrl, id: item.id,}})));
+  });
+  return{
+    getPlayList: function (id) {
+      dispatch(actions.fetchPlayList(true));
+      http.playlistDetail({id})(res=>{
+        dispatch(actions.updatePlayList(res.playlist.tracks));
+        dispatch(actions.togglePlayList(true));
+        dispatch(actions.fetchPlayList(true));
+      });
+    },
+    toggleSongSheetState(){dispatch(actions.toggleSongSheetState(false));},
+    toggleSongListtState(){dispatch(actions.toggleSongListtState(false));},
+    toggleDjprogramList(){dispatch(actions.toggleDjprogramList(false));},
+    togglePlayList(){dispatch(actions.togglePlayList(false));},
+    closePlayPage(){dispatch(actions.togglePlayList(false));},
+    playASong(id){
+      http.songUrl({id})(res=>{
+        const audio = document.querySelector("#audio");
+        audio.src = res.data[0].url;
+        audio.play();
+      })
+    },
   }
-}
-export default Home;
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
+
+
