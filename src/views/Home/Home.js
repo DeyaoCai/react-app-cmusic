@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import actions from '../actions';
 
-import '../styles/Home.css';
-import http from "../http/http.js";
-import ListItemPic from "../components/units/ListItemPic.js";
-import SongList from "../components/units/SongList.js";
-console.log(actions)
+import $actions from '../../actions';
+import $http from "../../http/http.js";
+
+import './Home.css';
+import units from "../../components/units.js";
+const {ListItemPic, SongList} = units;
 
 const Home = (conf) => {
   const {
@@ -30,39 +30,39 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  http.personalized()(res => {
-    dispatch(actions.updateSongSheet(
+  $http.personalized()(res => {
+    dispatch($actions.updateSongSheet(
       res.result.map(item => ({
         name: item.name, img: item.picUrl, id: item.id,
       }))
     ))
   });
-  http.personalizedNewsong()(res => {
-    dispatch(actions.updateSongList(
+  $http.personalizedNewsong()(res => {
+    dispatch($actions.updateSongList(
       res.result.map(item=>{
         return {name: item.name, img: item.song.album.picUrl, id: item.id,}
       })
     ))
   });
-  http.personalizedDjprogram()(res => {
-    dispatch(actions.updateDjprogramList(res.result.map(item=>{return {name: item.name, img: item.picUrl, id: item.id,}})));
+  $http.personalizedDjprogram()(res => {
+    dispatch($actions.updateDjprogramList(res.result.map(item=>{return {name: item.name, img: item.picUrl, id: item.id,}})));
   });
   return{
     getPlayList: function (id) {
-      dispatch(actions.fetchPlayList(true));
-      http.playlistDetail({id})(res=>{
-        dispatch(actions.updatePlayList(res.playlist.tracks));
-        dispatch(actions.togglePlayList(true));
-        dispatch(actions.fetchPlayList(true));
+      dispatch($actions.fetchPlayList(true));
+      $http.playlistDetail({id})(res=>{
+        dispatch($actions.updatePlayList(res.playlist.tracks));
+        dispatch($actions.togglePlayList(true));
+        dispatch($actions.fetchPlayList(true));
       });
     },
-    toggleSongSheetState(){dispatch(actions.toggleSongSheetState(false));},
-    toggleSongListtState(){dispatch(actions.toggleSongListtState(false));},
-    toggleDjprogramList(){dispatch(actions.toggleDjprogramList(false));},
-    togglePlayList(){dispatch(actions.togglePlayList(false));},
-    closePlayPage(){dispatch(actions.togglePlayList(false));},
+    toggleSongSheetState(){dispatch($actions.toggleSongSheetState(false));},
+    toggleSongListtState(){dispatch($actions.toggleSongListtState(false));},
+    toggleDjprogramList(){dispatch($actions.toggleDjprogramList(false));},
+    togglePlayList(){dispatch($actions.togglePlayList(false));},
+    closePlayPage(){dispatch($actions.togglePlayList(false));},
     playASong(id){
-      http.songUrl({id})(res=>{
+      $http.songUrl({id})(res=>{
         const audio = document.querySelector("#audio");
         audio.src = res.data[0].url;
         audio.play();

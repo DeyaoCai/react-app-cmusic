@@ -10,7 +10,8 @@ import cmusic from './reducers'
 
 import App from './views/App';
 
-let store = createStore(cmusic)
+let store = createStore(cmusic);
+
 
 ReactDOM.render(
   <Provider store={store}>

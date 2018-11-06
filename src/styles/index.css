@@ -1,11 +1,28 @@
+html{
+  font-size: 20px;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+}
 body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
 }
-html{
-  font-size: 20px;
+#root{
+  height: 100%;
+  width: 100%;
+}
+.App{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-orient:vertical;
 }
 *{
   list-style: none;
