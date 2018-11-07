@@ -19,7 +19,12 @@ export default (conf) => {
     ],
     content: (
       <div>
-        <Place></Place>
+        <Place config={[
+          {name: "私人FM", onClick: () => console.log("私人FM")},
+          {name: "每日推荐", onClick: () => console.log("每日推荐")},
+          {name: "歌单", onClick: () => console.log("歌单")},
+          {name: "排行榜", onClick: () => console.log("排行榜")},
+          ]}/>
         <ListItemPic config={songSheet} toggleState={toggleSongSheetState} getList={getPlayList}/>
         <ListItemPic config={songList} toggleState={toggleSongListtState} />
         <ListItemPic config={djprogramList} toggleState={toggleDjprogramList} />

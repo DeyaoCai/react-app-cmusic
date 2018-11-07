@@ -1,3 +1,5 @@
+import copy from "./copy";
+
 const getType = item => { return Object.prototype.toString.call(item).slice(8, -1); };
 
 getType.isNumber = (item) => getType(item) === 'Number';
@@ -9,4 +11,7 @@ getType.isNull = item => getType(item) === 'Null';
 getType.isUndefined = item => getType(item) === 'Undefined';
 getType.isFunction = item => getType(item) === 'Function';
 getType.isDate = item => getType(item) === 'Date';
-module.exports = getType;
+try{
+  module.exports = getType;
+} catch(e){}
+export default getType;

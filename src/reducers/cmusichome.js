@@ -1,129 +1,47 @@
-import http from "../http/http";
+import tools from "../components/tools.js";
 
-
-function copy() {
-  
-}
-
-
-
-
-
+const {copy} = tools;
 const fns = {
   // 歌单
   updateSongSheet(state, action) {
-    const arr = Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "songSheet" ? {name: list.name, list: action.data, active: list.active, isFetching: list.isFetching,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index) => {ret[item] = arr[index];});
-    return ret;
+    return copy(state, {songSheet: {list: action.data,}});
   },
   toggleSongSheetState(state, action){
-    const arr =  Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "songSheet" ? {name: list.name, list: list.list, active: !list.active, isFetching: list.isFetching,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index) => {ret[item] = arr[index];});
-    console.log(ret.songSheet)
-    return ret;
+    return copy(state, {songSheet: {active: !state.songSheet.active,}});
   },
   fetchSongSheet(state,action){
-    const arr =  Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "songSheet" ? {name: list.name, list: list.list, active: list.active, isFetching: action.data,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index) => {ret[item] = arr[index];});
-    return ret;
+    return copy(state, {songSheet: {isFetching: action.data,}});
   },
   // 最新音乐
   updateSongList(state, action) {
-    const arr = Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "songList" ? {name: list.name, list: action.data, active: list.active, isFetching: list.isFetching,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index) => {ret[item] = arr[index];});
-    return ret;
+    return copy(state, {songList: {list: action.data,}});
   },
   toggleSongListtState(state, action){
-    const arr =  Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "songList" ? {name: list.name, list: list.list, active: !list.active, isFetching: list.isFetching,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index) => {ret[item] = arr[index];});
-    console.log(ret.songSheet)
-    return ret;
+    return copy(state, {songList: {active: !state.songList.active,}});
   },
   fetchSongList(state, action) {
-    const arr =  Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "songList" ? {name: list.name, list: list.list, active: list.active, isFetching: action.data,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index) => {ret[item] = arr[index];});
-    return ret;
+    return copy(state, {songList: {isFetching: action.data,}});
   },
   // 主播电台
   updateDjprogramList(state, action) {
-    const arr =  Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "djprogramList" ? {name: list.name, list: action.data, active: list.active, isFetching: list.isFetching} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index) => {ret[item] = arr[index];});
-    return ret;
+    return copy(state, {djprogramList: {list: action.data,}});
   },
   toggleDjprogramList(state, action){
-    const arr =  Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "djprogramList" ? {name: list.name, list: list.list, active: !list.active, isFetching: list.isFetching,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index) => {ret[item] = arr[index];});
-    console.log(ret.songSheet)
-    return ret;
+    return copy(state, {djprogramList: {active: !state.djprogramList.active,}});
   },
   fetchDjprogramList(state, action) {
-    const arr =  Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "djprogramList" ? {name: list.name, list: list.list, active: list.active, isFetching: action.data,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index) => {ret[item] = arr[index];});
-    return ret;
+    return copy(state, {djprogramList: {isFetching: action.data,}});
   },
   // 播放列表
   updatePlayList(state, action) {
-    const arr =  Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "playList" ? {name: list.name, list: action.data, show: list.show, isFetching: list.isFetching,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index)=> {ret[item] = arr[index];});
-    return ret;
+    console.log(copy(state, {playList: {list: action.data,}}))
+    return copy(state, {playList: {list: action.data,}});
   },
   togglePlayList(state, action){
-    const arr =  Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "playList" ? {name: list.name, list: list.list, show: action.data, isFetching: list.isFetching,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index)=> {ret[item] = arr[index];});
-    return ret;
+    return copy(state, {playList: {active: action.data,}});
   },
   fetchPlayList(state, action) {
-    const arr =  Object.keys(state).map(item=> {
-      const list = state[item];
-      return item === "playList" ? {name: list.name, list: list.list, show: list.show, isFetching: action.data,} : list;
-    });
-    const ret = {}
-    Object.keys(state).forEach((item,index)=> {ret[item] = arr[index];});
-    return ret;
+    return copy(state, {playList: {isFetching: action.data,}});
   },
 };
 
@@ -134,7 +52,6 @@ const cmusichome = (state, action) => {
     djprogramList: {name: "主播电台", list: [], active: false, isFetching: false,},
     playList:{name: "歌曲列表", list: [], show: false, isFetching: false,},
     recmendList:{show: false, list:[]},
-
   });
   const curFn = fns[action.type];
   return curFn && curFn(state, action) || state;
