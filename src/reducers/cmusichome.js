@@ -1,5 +1,5 @@
 // 这个是分支处理函数
-import {cmusichomeFns} from "../actions/index.js";
+import cmusichomeFn from "./cmusichomeFn.js";
 
 // 这里是reducer // 生成并更新store 的入口函数
 const cmusichome = (state, action) => {
@@ -17,7 +17,7 @@ const cmusichome = (state, action) => {
       rankingList: {name: "排行榜", show: false},
     }
   });
-  const curFn = cmusichomeFns[action.type]; // 根据action 查找分支函数
+  const curFn = cmusichomeFn[action.type]; // 根据action 查找分支函数
   return curFn && curFn(state, action) || state; // 没找到处理函数 则返回上一次的 state
 };
 export default cmusichome;
