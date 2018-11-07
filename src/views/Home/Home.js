@@ -18,7 +18,8 @@ export default (conf) => {
       <Tab key={1}></Tab>
     ],
     content: (
-      <div><Place></Place>
+      <div>
+        <Place></Place>
         <ListItemPic config={songSheet} toggleState={toggleSongSheetState} getList={getPlayList}/>
         <ListItemPic config={songList} toggleState={toggleSongListtState} />
         <ListItemPic config={djprogramList} toggleState={toggleDjprogramList} />
