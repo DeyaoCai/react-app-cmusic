@@ -1,5 +1,14 @@
 import http from "../http/http";
 
+
+function copy() {
+  
+}
+
+
+
+
+
 const fns = {
   // 歌单
   updateSongSheet(state, action) {
@@ -124,9 +133,11 @@ const cmusichome = (state, action) => {
     songList: {name: "最新音乐", list: [], active: false, isFetching: false,},
     djprogramList: {name: "主播电台", list: [], active: false, isFetching: false,},
     playList:{name: "歌曲列表", list: [], show: false, isFetching: false,},
+    recmendList:{show: false, list:[]},
+
   });
   const curFn = fns[action.type];
   return curFn && curFn(state, action) || state;
 }
 
-export default cmusichome
+export default cmusichome;

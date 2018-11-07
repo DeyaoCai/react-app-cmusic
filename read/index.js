@@ -1,12 +1,12 @@
 const read = require("./read.js");
 
-const toolsConf = {
-  inputPath: "./src/tools",
-  outputPath: "./src/tools.js",
-  fileReg: /\.js$/,
-  importReg: /\/src/,
+const toolConf = {
+  inputPath: ["./src/components/tools",],
+  outputPath: "./src/components/tools.js",
+  fileReg: /\.(js)$/,
+  importReg: /\/src\/components/,
   exportReg: "",
-  succMsg: "write tools success!",
+  succMsg: "write comp success!",
   exportMode: "es6",
 }
 const compConf = {
@@ -40,7 +40,7 @@ const viewConf = {
   bizType: "train",
 }
 
-// read.writeExportFile(toolsConf);
+read.writeExportFile(toolConf);
 read.writeExportFile(viewConf);
 read.writeExportFile(unitConf);
 read.writeExportFile(compConf);

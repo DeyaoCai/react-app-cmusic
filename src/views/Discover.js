@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import $actions from '../actions';
+import $http from "./../http/http.js";import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import $actions from '../../actions';
-import $http from "../../http/http.js";
-
-import Home from "../Home/Home.js";
+import Home from "./Home/Home.js";
 
 const mapStateToProps = state => {
   return {...state.cmusichome}
@@ -51,7 +48,4 @@ const mapDispatchToProps = dispatch => {
     },
   }
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

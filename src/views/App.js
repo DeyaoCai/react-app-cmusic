@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from '../images/logo.svg';
 import './App.css';
 import {HashRouter,Route} from 'react-router-dom';
-import Discover from './Discover/Discover.js';
+import Discover from './Discover.js';
 import My from './My/My.js';
 
 const App = () => (
