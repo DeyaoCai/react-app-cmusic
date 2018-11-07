@@ -1,0 +1,33 @@
+.vuc-search{
+  display: flex;
+  padding: .4rem 0;
+  line-height: 1.8rem;
+  border-bottom: 1px solid #543;
+}
+.vuc-search>span:first-child,
+.vuc-search>span:last-child{
+  flex: 1;
+  text-align: center;
+}
+.vuc-search>span:nth-child(2){
+  background-color: #c75;
+  flex: 3;
+  border-radius: .15rem;
+  box-shadow: 0 .2rem .5rem #141617;
+}
+.vuc-search>span:nth-child(2)>input{
+  display: block;
+  text-shadow: 0 .1rem .1rem #282c34;
+  background-color: transparent;
+  color: #fff;
+  padding: 0 .4rem;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  transition: all .6s;
+  border-bottom: 1px solid #ccc;
+  border-radius: .15rem;
+}
+.vuc-search>span:nth-child(2)>input:focus{
+  opacity: 1;
+}

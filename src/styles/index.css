@@ -20,9 +20,10 @@ body {
 .App{
   height: 100%;
   width: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-orient:vertical;
+  -webkit-box-orient:vertical;
 }
 *{
   list-style: none;
@@ -34,6 +35,7 @@ body {
   text-decoration: none;
   font-style: normal;
   font-family: "思源黑体 CN";
+  user-select: none;
 }
 *::-webkit-scrollbar{
   width: 0;

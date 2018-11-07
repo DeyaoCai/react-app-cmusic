@@ -1,16 +1,12 @@
-/*
-
-wrap 相当于一个页面容器 占有页面所有的 100% 空间；
-然后提供n个容器；
-这些容器的
-
-* */
+import React, { Component } from 'react';
 import "./Wrap.css";
-export  default  function(){
-  return (<div class="vuc-wrap">
-    <div className="vue-wrap-head">{/*头部*/}</div>
-    <div className="vue-wrap-content">{/*主体*/}</div>
-    <div className="vue-wrap-foot">{/*脚部*/}</div>
-    <div className="vue-wrap-pop">{/*全屏弹窗*/}</div>
-  </div>)
+export  default  function(props){
+  const config = props.config;
+  const {head,content,foot,pop} = config;
+  return (<div className="vuc-wrap"><div><div>
+    <div className="vue-wrap-head">{head/*头部*/}</div>
+    <div className="vue-wrap-content"><div>{content/*主体*/}</div></div>
+    <div className="vue-wrap-foot">{foot/*脚部*/}</div>
+    <div>{pop/*全屏弹窗*/}</div>
+  </div></div></div>)
 }
