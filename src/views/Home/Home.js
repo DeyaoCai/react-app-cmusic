@@ -21,7 +21,6 @@ export default (conf) => {
     funcList: [
       {tabConf: placeConf.personal, onClick: () => console.log("私人FM")},
       {tabConf: placeConf.recmend, onClick: () => {
-          console.log("每日推荐")
           togglePlaceConfRecmend(true);
       }},
       {tabConf: placeConf.songList, onClick: () => console.log("歌单")},

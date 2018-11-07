@@ -4,9 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Home from "./Home/Home.js";
 
-const mapStateToProps = state => {
-  return {...state.cmusichome}
-};
+const mapStateToProps = state => ({...state.cmusichome});
 
 const mapDispatchToProps = dispatch => {
   const $actions = makeActions(dispatch);

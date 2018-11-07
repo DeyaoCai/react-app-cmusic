@@ -1,6 +1,4 @@
-import copy from "./copy";
-
-const getType = item => { return Object.prototype.toString.call(item).slice(8, -1); };
+const getType = item => (Object.prototype.toString.call(item).slice(8, -1));
 
 getType.isNumber = (item) => getType(item) === 'Number';
 getType.isString = item => getType(item) === 'String';
