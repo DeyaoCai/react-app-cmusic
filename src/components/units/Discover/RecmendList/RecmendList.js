@@ -6,7 +6,6 @@ export default function () {
   const config = {
     constent: (<div></div>),
     show: false,
-
   };
   return (<PopUp config={config}></PopUp>)
 }

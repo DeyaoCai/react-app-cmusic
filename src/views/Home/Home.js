@@ -15,12 +15,14 @@ export default (conf) => {
     songSheet,songList,djprogramList,playList,
     getPlayList, playASong,placeConf,
     toggleSongSheetState,toggleSongListtState, toggleDjprogramList, togglePlayList,
+    togglePlaceConfRecmend,
   } = conf;
   const homeTab = {
     funcList: [
       {tabConf: placeConf.personal, onClick: () => console.log("私人FM")},
       {tabConf: placeConf.recmend, onClick: () => {
           console.log("每日推荐")
+          togglePlaceConfRecmend(true);
       }},
       {tabConf: placeConf.songList, onClick: () => console.log("歌单")},
       {tabConf: placeConf.rankingList, onClick: () => console.log("排行榜")},
