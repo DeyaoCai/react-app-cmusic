@@ -2,10 +2,9 @@
 import React, { Component } from 'react';
 import "./Place.css";
 export default function(props){
+  const {config} = props;
+  const {funcList} = config;
   return (<div className="vuc-place">
-    <span>私人FM</span>
-    <span>每日推荐</span>
-    <span>歌单</span>
-    <span>排行榜</span>
+    {funcList.map((item, index) => (<span key={index}>{item.tabConf.name}</span>))}
   </div>)
 }

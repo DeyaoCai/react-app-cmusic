@@ -34,15 +34,19 @@ const fns = {
   },
   // 播放列表
   updatePlayList(state, action) {
-    console.log(copy(state, {playList: {list: action.data,}}))
     return copy(state, {playList: {list: action.data,}});
   },
   togglePlayList(state, action){
-    return copy(state, {playList: {active: action.data,}});
+    return copy(state, {playList: {show: action.data,}});
   },
   fetchPlayList(state, action) {
     return copy(state, {playList: {isFetching: action.data,}});
   },
+  togglePlaceConfRecmend(state, action){
+    return copy(state, {playList: {show: action.data,}});
+  },
+
+
 };
 
 const cmusichome = (state, action) => {
@@ -52,6 +56,12 @@ const cmusichome = (state, action) => {
     djprogramList: {name: "主播电台", list: [], active: false, isFetching: false,},
     playList:{name: "歌曲列表", list: [], show: false, isFetching: false,},
     recmendList:{show: false, list:[]},
+    placeConf:{
+      personal: {name: "私人FM", show: false},
+      recmend: {name: "每日推荐", show: false},
+      songList: {name: "歌单", show: false},
+      rankingList: {name: "排行榜", show: false},
+    }
   });
   const curFn = fns[action.type];
   return curFn && curFn(state, action) || state;

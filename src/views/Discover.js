@@ -1,4 +1,4 @@
-import $actions from '../actions';
+import makeActions from '../actions';
 import $http from "./../http/http.js";import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Home from "./Home/Home.js";
@@ -8,37 +8,34 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
+  const $actions = makeActions(dispatch);
   $http.personalized()(res => {
-    dispatch($actions.updateSongSheet(
+    $actions.updateSongSheet(
       res.result.map(item => ({
         name: item.name, img: item.picUrl, id: item.id,
       }))
-    ))
+    )
   });
   $http.personalizedNewsong()(res => {
-    dispatch($actions.updateSongList(
+    $actions.updateSongList(
       res.result.map(item=>{
         return {name: item.name, img: item.song.album.picUrl, id: item.id,}
       })
-    ))
+    )
   });
   $http.personalizedDjprogram()(res => {
-    dispatch($actions.updateDjprogramList(res.result.map(item=>{return {name: item.name, img: item.picUrl, id: item.id,}})));
+    $actions.updateDjprogramList(res.result.map(item=>{return {name: item.name, img: item.picUrl, id: item.id,}}));
   });
   return{
+    ...$actions,
     getPlayList: function (id) {
-      dispatch($actions.fetchPlayList(true));
+      $actions.fetchPlayList(true);
       $http.playlistDetail({id})(res=>{
-        dispatch($actions.updatePlayList(res.playlist.tracks));
-        dispatch($actions.togglePlayList(true));
-        dispatch($actions.fetchPlayList(true));
+        $actions.updatePlayList(res.playlist.tracks);
+        $actions.togglePlayList(true);
+        $actions.fetchPlayList(true);
       });
     },
-    toggleSongSheetState(){dispatch($actions.toggleSongSheetState(false));},
-    toggleSongListtState(){dispatch($actions.toggleSongListtState(false));},
-    toggleDjprogramList(){dispatch($actions.toggleDjprogramList(false));},
-    togglePlayList(){dispatch($actions.togglePlayList(false));},
-    closePlayPage(){dispatch($actions.togglePlayList(false));},
     playASong(id){
       $http.songUrl({id})(res=>{
         const audio = document.querySelector("#audio");
