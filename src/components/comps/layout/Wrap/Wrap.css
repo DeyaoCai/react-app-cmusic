@@ -3,6 +3,7 @@
   text-align: left;
   width: 100%;
   position: relative;
+  background-color: rgba(40,44,52,.7);
 }
 .vuc-wrap>div{
   height: 100%;
