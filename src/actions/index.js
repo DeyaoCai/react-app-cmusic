@@ -1,59 +1,29 @@
-import tools from "../components/tools.js";
+// 所有在 reducer 中使用的分支函数；
+import cmusichomeFns from "./cmusichome";
+// ...这里可以继续引入其他模块的分值函数
 
-const {copy} = tools;
-const cmusichomeFns = {
-  // 歌单
-  updateSongSheet(state, action) {
-    return copy(state, {songSheet: {list: action.data,}});
-  },
-  toggleSongSheetState(state, action){
-    return copy(state, {songSheet: {active: !state.songSheet.active,}});
-  },
-  fetchSongSheet(state,action){
-    return copy(state, {songSheet: {isFetching: action.data,}});
-  },
-  // 最新音乐
-  updateSongList(state, action) {
-    return copy(state, {songList: {list: action.data,}});
-  },
-  toggleSongListtState(state, action){
-    return copy(state, {songList: {active: !state.songList.active,}});
-  },
-  fetchSongList(state, action) {
-    return copy(state, {songList: {isFetching: action.data,}});
-  },
-  // 主播电台
-  updateDjprogramList(state, action) {
-    return copy(state, {djprogramList: {list: action.data,}});
-  },
-  toggleDjprogramList(state, action){
-    return copy(state, {djprogramList: {active: !state.djprogramList.active,}});
-  },
-  fetchDjprogramList(state, action) {
-    return copy(state, {djprogramList: {isFetching: action.data,}});
-  },
-  // 播放列表
-  updatePlayList(state, action) {
-    return copy(state, {playList: {list: action.data,}});
-  },
-  togglePlayList(state, action){
-    return copy(state, {playList: {show: action.data,}});
-  },
-  fetchPlayList(state, action) {
-    return copy(state, {playList: {isFetching: action.data,}});
-  },
-  togglePlaceConfRecmend(state, action){
-    return copy(state, {playList: {show: action.data,}});
-  },
+// 根据reducer 分支函数名， 创建对应的 action 函数 // 这些action函数会接受一个值， 然后生成 返回{type: action名, data: 参数值}的方法；
+function  makeReducerFnsIntoActions(reducerFns){
+  const actions = {};
+  Object.keys(reducerFns).forEach(item => actions[item] = (data) => {return {type: item, data}});
+  return actions;
 };
 
-const cmusichome = {};
-Object.keys(cmusichomeFns).forEach(item => cmusichome[item] = (data) => {return {type: item, data}});
+// 组合所有actions 作为 makeActions 内部需要转化的actions
+const actions = {
+  ...makeReducerFnsIntoActions(cmusichomeFns),
+  // ...这里可以继续添加 分支函数
+};
 
-export {cmusichomeFns};
-export default function makeActions(dispatch) {
-  function _(str,val){dispatch(cmusichome[str](val));};
+export {
+  cmusichomeFns,
+  // 这里可以继续暴露值，这里的值是reducer分支函数 给 reducer 使用的；
+};
+
+// 导出将 dispatch(action(val)) 转化为 xxx.action(val) 模式的函数；可以在外界用 ...xxx 结构成 action(val); 接受 dispatch 作为参数
+export default function makeActions(dispatch){
+  function _(str,val){dispatch(actions[str](val));};
   const actionFn = {};
-  Object.keys(cmusichome).forEach(item=> actionFn[item] = val => _(item,val));
+  Object.keys(actions).forEach(item=> actionFn[item] = val => _(item,val));
   return actionFn;
 }

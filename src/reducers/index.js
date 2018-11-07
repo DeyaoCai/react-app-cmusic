@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux'
-import cmusichome from './cmusichome'
+import { combineReducers } from 'redux';
+import cmusichome from './cmusichome';
 
-const cmusic = combineReducers({
+export default combineReducers({
   cmusichome,
+  // 这里可以放其他模块的 reducer
 });
-export default cmusic;

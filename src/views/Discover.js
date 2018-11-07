@@ -1,5 +1,6 @@
 import makeActions from '../actions';
-import $http from "./../http/http.js";import React, { Component } from 'react';
+import $http from "./../http/http.js";
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Home from "./Home/Home.js";
 
