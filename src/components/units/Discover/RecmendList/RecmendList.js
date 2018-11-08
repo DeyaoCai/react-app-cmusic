@@ -1,11 +1,8 @@
 import React from 'react';
 import comps from "../../../comps.js";
 const {PopUp} = comps;
-console.log(comps)
-export default function () {
-  const config = {
-    constent: (<div></div>),
-    show: false,
-  };
-  return (<PopUp config={config}></PopUp>)
+export default function (props) {
+  const {config} = props
+  const constent = (<div>213</div>);
+  return (<PopUp config={config} content={constent}></PopUp>)
 }

@@ -12,17 +12,16 @@ const {
 
 export default (conf) => {
   const {
-    songSheet,songList,djprogramList,playList,
-    getPlayList, playASong,placeConf,
+    getPlayList, playASong, songSheet,songList,djprogramList,playList, placeConf,
+  } = conf;
+  const {
     toggleSongSheetState,toggleSongListtState, toggleDjprogramList, togglePlayList,
     togglePlaceConfRecmend,
-  } = conf;
+  } = conf.$actions;
   const homeTab = {
     funcList: [
       {tabConf: placeConf.personal, onClick: () => console.log("私人FM")},
-      {tabConf: placeConf.recmend, onClick: () => {
-          togglePlaceConfRecmend(true);
-      }},
+      {tabConf: placeConf.recmend, onClick: () => {togglePlaceConfRecmend(true);}},
       {tabConf: placeConf.songList, onClick: () => console.log("歌单")},
       {tabConf: placeConf.rankingList, onClick: () => console.log("排行榜")},
     ]
@@ -42,7 +41,7 @@ export default (conf) => {
     ),
     pop: [
       <SongList key={0} config={playList} toggleState={togglePlayList} playASong={playASong}/>,
-      <RecmendList key={1}></RecmendList>
+      <RecmendList key={1} config={homeTab.funcList[1].tabConf}></RecmendList>
     ],
     foot: [
       <FootNav key={0}></FootNav>

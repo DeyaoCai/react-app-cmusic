@@ -43,6 +43,6 @@ export default {
     return copy(state, {playList: {isFetching: action.data,}});
   },
   togglePlaceConfRecmend(state, action){
-    return copy(state, {playList: {show: action.data,}});
+    return copy(state, {placeConf: {recmend:{show: action.data,}}});
   },
 };

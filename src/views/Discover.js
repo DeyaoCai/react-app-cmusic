@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => {
     $actions.updateDjprogramList(res.result.map(item=>{return {name: item.name, img: item.picUrl, id: item.id,}}));
   });
   return{
-    ...$actions,
+    $actions,
     getPlayList: function (id) {
       $actions.fetchPlayList(true);
       $http.playlistDetail({id})(res=>{
