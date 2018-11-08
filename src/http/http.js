@@ -1,5 +1,4 @@
 import httpConf from "./httpConf";
-const fs = require("fs");
 function makeAjax(url) {
   return function(data){
     const cb = {fn: null, then: fn=>cb.fn = fn}

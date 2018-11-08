@@ -1,27 +1,37 @@
 import React from 'react';
+import $http from "./../../http/http.js";
 
 import './Home.css';
 import units from "../../components/units.js";
 import comps from "../../components/comps.js";
 const {
-  ListItemPic, SongList, RecmendList,
+  ListItemPic, SongList, RecmendList,RecmendActs
 } = units;
 const {
-  Wrap,Search,FootNav, PopUp,Tab,Place
+  Wrap,Search,FootNav, Tab, Place
 } = comps;
 
 export default (conf) => {
   const {
+    $actions,
     getPlayList, playASong, songSheet,songList,djprogramList,playList, placeConf,
   } = conf;
   const {
     toggleSongSheetState,toggleSongListtState, toggleDjprogramList, togglePlayList,
-    togglePlaceConfRecmend,
   } = conf.$actions;
   const homeTab = {
     funcList: [
       {tabConf: placeConf.personal, onClick: () => console.log("私人FM")},
-      {tabConf: placeConf.recmend, onClick: () => {togglePlaceConfRecmend(true);}},
+      {tabConf: placeConf.recmend, onClick: () => {
+
+          $http.recommendSongs()(res=>{
+            $actions.setPlaceConfRecmend({show:true, list: res.recommend});
+            setTimeout(() => {
+              $actions.setPlaceConfRecmend({active:true});
+            },50);
+          })
+
+       }},
       {tabConf: placeConf.songList, onClick: () => console.log("歌单")},
       {tabConf: placeConf.rankingList, onClick: () => console.log("排行榜")},
     ]
@@ -41,7 +51,8 @@ export default (conf) => {
     ),
     pop: [
       <SongList key={0} config={playList} toggleState={togglePlayList} playASong={playASong}/>,
-      <RecmendList key={1} config={homeTab.funcList[1].tabConf}></RecmendList>
+      <RecmendList key={1} config={homeTab.funcList[1].tabConf} $actions={$actions} playASong={playASong}/>,
+      <RecmendActs key={2} config={placeConf.recmend.actionsConf} $actions={$actions}/>
     ],
     foot: [
       <FootNav key={0}></FootNav>

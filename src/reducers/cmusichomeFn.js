@@ -45,4 +45,22 @@ export default {
   togglePlaceConfRecmend(state, action){
     return copy(state, {placeConf: {recmend:{show: action.data,}}});
   },
+  setPlaceConfRecmend(state, action){
+    return copy(state, {placeConf: {recmend: action.data,}});
+  },
+  setPlaceConfRecmendAct(state, action){
+    return copy(state, {placeConf: {recmend: {actionsConf: action.data},}});
+  },
 };
+/*
+设置一个弹窗的
+  先激活， 激活的动画停止回调执行，
+  然后 setTimeout 让动画动起来，
+  然后动画结束 设置激活
+
+show = true 用来展开页面；
+active = false
+
+
+
+*/

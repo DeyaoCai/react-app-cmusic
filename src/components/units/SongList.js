@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 function SongList(props) {
   const {config, toggleState, playASong} = props;
   return (

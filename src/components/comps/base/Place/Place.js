@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import "./Place.css";
 export default function(props){
   const {config} = props;

@@ -11,13 +11,13 @@ const cmusichome = (state, action) => {
     playList:{name: "歌曲列表", list: [], show: false, isFetching: false,},
     recmendList:{show: false, list:[]},
     placeConf:{
-      personal: {name: "私人FM", show: false},
-      recmend: {name: "每日推荐", show: false},
-      songList: {name: "歌单", show: false},
-      rankingList: {name: "排行榜", show: false},
+      personal: {name: "私人FM", show: false,active: false},
+      recmend: {name: "每日推荐", show: false,active: false, list:[], actionsConf: {show: false, active: false, songDto: null}},
+      songList: {name: "歌单", show: false,active: false},
+      rankingList: {name: "排行榜", show: false,active: false},
     }
   });
   const curFn = cmusichomeFn[action.type]; // 根据action 查找分支函数
-  return curFn && curFn(state, action) || state; // 没找到处理函数 则返回上一次的 state
+  return curFn ? curFn(state, action) : state; // 没找到处理函数 则返回上一次的 state
 };
 export default cmusichome;

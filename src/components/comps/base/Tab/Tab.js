@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import "./Tab.css";
 export default function(props){
   return (<div className="vuc-tab">

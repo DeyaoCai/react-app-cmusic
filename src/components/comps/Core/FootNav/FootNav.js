@@ -1,5 +1,4 @@
-
-import React, { Component } from 'react';
+import React from 'react';
 import "./FootNav.css";
 export default function(props){
   return (<div className="vuc-foot-nav">

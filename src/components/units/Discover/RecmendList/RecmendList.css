@@ -1,0 +1,53 @@
+.recmend-list{
+  padding: .75rem;
+  font-size: .65rem;
+}
+.recmend-list>li{
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  background-color: rgba(255,255,255,0);
+  transition: all .6s;
+  position: relative;
+  padding: .6rem 2.5rem;
+}
+.recmend-list>li:active{
+  background-color: rgba(255,255,255,.2);
+}
+.recmend-list>li>img{
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: .3rem;
+}
+.recmend-list>li>div:nth-child(2){
+  overflow: hidden;
+}
+.recmend-list>li>div:last-child{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  line-height: 2rem;
+  text-align: center;
+}
+.recmend-list>li>div>div{
+  padding-bottom: .15rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: .65rem;
+  width: 100%;
+}
+.recmend-list>li>div>span{
+  display: block;
+  width: 100%;
+  font-size: .5rem;
+  color: #ccc;
+  line-height: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
