@@ -5,7 +5,7 @@ const {PopUp,Icon} = comps;
 export default function (props) {
   const {config, $actions,playASong,} = props;
   const func = {setConf: $actions.setPlaceConfRecmend, full: true, derction: "", flex: true, stop: true};
-  const {Wrap,Header} = comps;
+  const {Wrap,Header,HeadNormal} = comps;
   function hidePop(e){
     $actions.setPlaceConfRecmend({active: false});
   }
@@ -18,7 +18,7 @@ export default function (props) {
   const constent = (<Wrap stop={true} config={{
     head: (<Header config={{
       left: (<Icon icon={"back1"} handerclick={hidePop}/>),
-      title: (<div>每日推荐</div>),
+      title: (<HeadNormal content={"每日推荐"}></HeadNormal>),
       right: (<Icon icon={"gengduo1"}/>),
     }}/>),
     content: (<div className="recmend-list">{

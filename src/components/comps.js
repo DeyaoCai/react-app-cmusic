@@ -5,6 +5,7 @@ import Audio from "./comps/Core/Audio/Audio.js"
 import FootNav from "./comps/Core/FootNav/FootNav.js"
 import Search from "./comps/Core/Search/Search.js"
 import Header from "./comps/layout/Header/Header.js"
+import HeadNormal from "./comps/layout/Header/HeadNormal/HeadNormal.js"
 import PopUp from "./comps/layout/PopUp/PopUp.js"
 import Wrap from "./comps/layout/Wrap/Wrap.js"
 
@@ -16,6 +17,7 @@ export default {
 	FootNav,
 	Search,
 	Header,
+	HeadNormal,
 	PopUp,
 	Wrap
 }
