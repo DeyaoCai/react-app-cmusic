@@ -20,9 +20,6 @@ function _getClass() {
 function getClass(){
   return _getClass.apply([],arguments).join(" ");
 }
-console.log(
-getClass("46",{a:1,b:2},[3,4,{c:5,d:0}])
-)
 try{
   module.exports = getClass;
 } catch(e){}

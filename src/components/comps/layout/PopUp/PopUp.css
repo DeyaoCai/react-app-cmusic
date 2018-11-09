@@ -21,15 +21,24 @@
   display: flex;
   flex-direction: column;
   box-orient:vertical;
-  transform: translateY(100%);
+  transform: translate(0,100%);
   opacity: 0;
   transition: all .6s;
 }
 .vuc-popup.top>div{
-  transform: translateY(-100%);
+  transform: translate(0,-100%);
+}
+.vuc-popup.bottom>div{
+  transform: translate(0,100%);
+}
+.vuc-popup.left>div{
+  transform: translate(-100%,0);
+}
+.vuc-popup.right>div{
+  transform: translate(100%,0);
 }
 .vuc-popup.active>div{
-  transform: translateY(0%);
+  transform: translate(0,0);
   opacity: 1;
 }
 .vuc-popup-up,

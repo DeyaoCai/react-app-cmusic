@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import cmusic from './reducers'
-import "./iconfont/iconfont.css";
+import "./iconfont/iconfont.css"
 import App from './views/App';
 
 let store = createStore(cmusic);

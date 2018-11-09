@@ -1,0 +1,40 @@
+.vuc-sheet-catlist{
+}
+.vuc-sheet-catlist-all{
+  margin: .2rem;
+  border: 1px solid #fff;
+  text-align: center;
+}
+.vuc-sheet-catlist ul{
+  margin-top: .4rem;
+  border-top: 1px solid rgba(255,255,255,.2);
+}
+.vuc-sheet-catlist li{
+  border: 1px solid rgba(255,255,255,.2);
+  text-align: center;
+  width: 20%;
+  height: 2rem;
+  font-size: .65rem;
+  display: inline-block;
+  border-left: 0;
+  border-top: 0;
+  line-height: 2rem;
+  vertical-align: top;
+  background-color: transparent;
+  position: relative;
+  transition: all .3s;
+}
+.vuc-sheet-catlist li:active{
+  background-color: rgba(255,255,255,.1);
+}
+.vuc-sheet-catlist li:first-child{
+  line-height: 4rem;
+  margin-bottom: -2rem;
+  height: 4rem;
+}
+.vuc-sheet-catlist li:nth-child(5n+5){
+  border-right: 0;
+}
+.vuc-sheet-catlist li:nth-child(6){
+  opacity: 0;
+}

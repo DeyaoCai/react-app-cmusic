@@ -4,17 +4,16 @@ import tools from "../../../tools.js";
 export default function(props){
   const {config,content,func} = props;
   const {setConf} = func;
-  const fromTop = func.derction === "top";
+  const derction = func.derction;
   const isFull = func.full;
-  const wrapClass = tools.getClass("vuc-popup",{
+  const wrapClass = tools.getClass("vuc-popup", derction,{
     active: config.active,
     show: config.show,
-    top: fromTop,
     full: isFull,
     flex: func.flex,
   });
-  const downClass = tools.getClass("vuc-popup-down", {none: isFull || !fromTop});
-  const upClass = tools.getClass("vuc-popup-up", {none: isFull || fromTop});
+  const downClass = tools.getClass("vuc-popup-down", {none: isFull || !derction});
+  const upClass = tools.getClass("vuc-popup-up", {none: isFull || derction});
   function hidePop(e){
     if(func.stop) return;
     setConf({active: false});

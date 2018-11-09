@@ -4,7 +4,7 @@ import "./RecmendList.css"
 const {PopUp,Icon} = comps;
 export default function (props) {
   const {config, $actions,playASong,} = props;
-  const func = {setConf: $actions.setPlaceConfRecmend, full: true, derction: "", flex: true, stop: true};
+  const func = {setConf: $actions.setPlaceConfRecmend, full: true, derction: "right", flex: true, stop: true};
   const {Wrap,Header,HeadNormal} = comps;
   function hidePop(e){
     $actions.setPlaceConfRecmend({active: false});

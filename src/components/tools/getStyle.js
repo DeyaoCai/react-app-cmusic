@@ -20,9 +20,6 @@ function _getStyle() {
 function getStyle(){
   return _getStyle.apply([],arguments).join("");
 }
-console.log(
-  getStyle("color: #eee;",{"font-size": "20px"},["color: #eee;",{"font-size": "20px"}])
-)
 try{
   module.exports = getStyle;
 } catch(e){}
