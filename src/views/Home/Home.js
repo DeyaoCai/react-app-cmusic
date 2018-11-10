@@ -8,16 +8,16 @@ const {
   RecmendActs, List, SheetCatlist, RankList
 } = units;
 const {
-  Wrap,Search,FootNav, Tab, Place
+  Wrap,Search,FootNav, Tab, Place, Scroll
 } = comps;
 
 export default (conf) => {
   // 播放歌曲
-  function playASong(id){
+  function playASong(id,ev){
     $http.songUrl({id})(res=>{
       const audio = document.querySelector("#audio");
       audio.src = res.data[0].url;
-      audio.play();
+      // audio.play();
     })
   };
   // 每日推荐 // 歌曲 // 歌单
@@ -58,28 +58,35 @@ export default (conf) => {
       showSheetCatList(arr);
     })
   }
+  function getTopPlaylist(id){
+    $http.topPlaylist({limit:20,order: "new",cat: id})(res=>{
+      showSheetList(res.playlists);
+    })
+  }
+  const NeedHideOtherPop = false;
 
   function showSongList(list) {
     $actions.setSongList({show:true, list: list});
     setTimeout(() => $actions.setSongList({active:true}),50);
-    setTimeout(() => $actions.setSheetList({active:false}), 800);
-    setTimeout(() => $actions.setSheetCatList({active:false}), 800);
-    setTimeout(() => $actions.setRankList({active:false}), 800);
+    if (NeedHideOtherPop){
+      setTimeout(() => $actions.setSheetList({active:false}), 800);
+      setTimeout(() => $actions.setSheetCatList({active:false}), 800);
+      setTimeout(() => $actions.setRankList({active:false}), 800);
+    }
   }
 
   function showSheetList(list) {
     $actions.setSheetList({show:true, list: list});
     setTimeout(() => $actions.setSheetList({active:true}), 50);
-    setTimeout(() => $actions.setSheetCatList({active:false}), 800);
+    if (NeedHideOtherPop) setTimeout(() => $actions.setSheetCatList({active:false}), 800);
   }
   function showSheetCatList(list) {
     $actions.setSheetCatList({list: list, show:true});
     setTimeout(() => $actions.setSheetCatList({active:true}),50);
   }
-  function getTopPlaylist(id){
-    $http.topPlaylist({limit:20,order: "new",cat: id})(res=>{
-      showSheetList(res.playlists);
-    })
+  function showRankList(list){
+    $actions.setRankList({show:true, list: list});
+    setTimeout(() => $actions.setRankList({active:true}), 50);
   }
   const {
     $actions,
@@ -103,19 +110,7 @@ export default (conf) => {
   };
 
   function getToplistDetail(){$http.toplistDetail()(showRankList)}
-  function showRankList(list){
-    $actions.setRankList({show:true, list: list});
-    setTimeout(() => $actions.setRankList({active:true}), 50);
-  }
-  function showRankList(list){
-    $actions.setRankList({show:true, list: list});
-    setTimeout(() => $actions.setRankList({active:true}), 50);
-  }
-  function getTopList(idx) {
-    $http.topList({idx})(res=>{
-      showSongList(res.playlist.tracks)
-    })
-  }
+  function getTopList(idx) {$http.topList({idx})(res => showSongList(res.playlist.tracks))}
   const rankPlace = {
     funcList: [
       {tabConf: {name: "排行榜", icon: "456"}, onClick: getToplistDetail},
@@ -125,11 +120,19 @@ export default (conf) => {
   const setConfAct = $actions.setActionsList;
   const config = {
     head: [<Search key={0}/>, <Tab key={1}/>],
-    content: ([
-      <Place key={0} config={songPlace}/>,
-      <Place key={1} config={sheetPlace}/>,
-      <Place key={2} config={rankPlace}/>,
-    ]),
+    content: (
+      <Scroll config={{derction: "xy"}}>
+        <Place config={songPlace}/>
+        <Place config={sheetPlace}/>
+        <Place config={rankPlace}/>
+        <Place config={songPlace}/>
+        <Place config={sheetPlace}/>
+        <Place config={rankPlace}/>
+        <Place config={songPlace}/>
+        <Place config={sheetPlace}/>
+        <Place config={rankPlace}/>
+      </Scroll>
+    ),
     pop: [/*
       <List key={3} title={"推荐歌单"} $actions={$actions}
          playASong={(id)=> $http.playlistDetail({id})(res=>{

@@ -1,0 +1,31 @@
+
+/*滚动开始*/
+.vuc-scroll{
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+.vuc-scroll-wrap{
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    white-space: nowrap;
+    font-size: 0;
+}
+/*滚动结束*/
+/*滚动开始*/
+.vue-scroll-reflash,
+.vue-scroll-loadmore{
+  text-align: center;
+  line-height: 2.5rem;
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition: all .3s;
+}
+.vue-scroll-reflash.active,
+.vue-scroll-loadmore.active{
+  height: 2.5rem;
+  opacity: 1;
+}
