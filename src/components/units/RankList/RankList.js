@@ -1,7 +1,9 @@
 import React from 'react';
 import comps from "../../comps.js";
 import "./RankList.css"
-const {PopUp,Icon} = comps;
+import tools from "../../tools.js";
+const {copy, scrollConf} = tools;
+const {PopUp,Icon,Scroll} = comps;
 export default function (props) {
   const {config, setConf,showDetail} = props;
   const {Wrap,Header,HeadNormal} = comps;
@@ -80,13 +82,18 @@ export default function (props) {
 
   const constent = (<Wrap stop={true} config={{
     head: (<Header config={headerConf}/>),
-    content: (<div className="vuc-rank">
+    content: (<Scroll config={copy(scrollConf,{derction: "y", itemNum:{x:1,y:1},})}><div className="vuc-rank">
       {
-        config.list && config.list.list && config.list.list.map((item,index) => getCode(item)+1 ? (<ul key={index} onClick={() => showDetail(getCode(item))}><div><img src={item.coverImgUrl} alt=""/></div><div>{
-          item.tracks.map((key,i)=>(<li key={i}>{key.first}</li>))
-        }</div> </ul>) : "")
+        config.list && config.list.list && config.list.list.map((item,index) => getCode(item)+1 ? (<ul key={index} onClick={() => showDetail(getCode(item))}>
+          <div>
+            {/*<img src={item.coverImgUrl} alt=""/>*/}
+          </div>
+          <div>{
+            item.tracks.map((key,i)=>(<li key={i}>{key.first}</li>))
+          }</div>
+        </ul>) : "")
       }
-    </div>)
+    </div></Scroll>)
   }}/>);
   const func = {setConf: setConf, full: true, derction: "right", flex: true, stop: true};
   return (<PopUp config={config} content={constent} func={func}/>)

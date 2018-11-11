@@ -16,7 +16,7 @@ class Scroll extends React.Component {
     return {
       transform: `translate(${pos.x}px,${pos.y}px)`,
       transition: `transform ${touching ? 0 : ti}s ease-out`,
-      height: this.drag.prevent === "y" ? "100%" : "auto"
+      // height: this.drag.prevent === "y" ? "100%" : "auto"
     }
   }
   init () {
@@ -35,7 +35,6 @@ class Scroll extends React.Component {
     const itemNum = conf.itemNum;
     itemNum.x || (itemNum.x = 1);
     itemNum.y || (itemNum.y = 1);
-    this.setIndex(index);
     conf.setIndex = this.setIndex;
   }
   // 这里是计算属性
@@ -111,7 +110,7 @@ class Scroll extends React.Component {
     const wrap = { x: $el.offsetWidth, y: $el.offsetHeight, };
 
     // x 周因为 元素最大为100%，顾需要手动计算 y轴不用
-    let ix = $ele.offsetWidth * this.props.config.itemNum.x;
+    let ix = $ele.offsetWidth * (this.props.config.itemNum && this.props.config.itemNum.x || 0);
     let iy = $ele.offsetHeight;
 
     // 当不能根据容器的体积计算出滚动长度的时候， 我们需要根据他的子节点的宽度来让其滚动
@@ -177,6 +176,7 @@ class Scroll extends React.Component {
       state.nowPosi.y = this.getWrapSize().wrap.y * -y;
       state.posi.y = state.nowPosi.y;
     }
+    this.setState({});
   }
   touchEv (ev) {
     this.hasOnEndEv = false;
@@ -211,6 +211,7 @@ class Scroll extends React.Component {
     } else state.nowPosi = this.getLimitedPosition();
     this.props.config.onTouchEnd && this.props.config.onTouchEnd(this.props.config.index, this.props.config);
     this.drag.endEv();
+    this.props.config.takeOneStepAtATime && this.setIndex(this.props.config.index);
     this.setState({});
   }
   constructor(props) {
@@ -246,6 +247,9 @@ class Scroll extends React.Component {
     this.init = this.init.bind(this);
 
     this.init && this.init();
+  }
+  componentDidMount(){
+    this.setIndex(this.props.config.index);
   }
   render(){
     return (<div ref="wrap"

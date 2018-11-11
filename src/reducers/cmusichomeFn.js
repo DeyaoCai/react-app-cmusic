@@ -23,6 +23,9 @@ export default {
   setRankList(state, action){
     return copy(state, {rankList: action.data});
   },
+  setNavTabIndex(state, action){
+    return copy(state, {navTabIndex: action.data});
+  },
 };
 /*
 设置一个弹窗的

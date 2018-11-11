@@ -40,6 +40,10 @@ class Drag{
     if (this.prevent === "x" || this.prevent === "y") {
       this.now[this.prevent] = this.ori[this.prevent];
     }
+    // 允许的运动方向 // prevent 的方向为 空或者xy 各方向均允许运动 故需要捕获
+    const allow = {"": "xy", "x": "y", "y": "x", "xy": "xy",}[this.prevent];
+    // 当前方向 在运动时， 阻止冒泡
+    if(allow && this.prevent && new RegExp(this.drection).test(allow)) ev.stopPropagation();
   }
   endEv () {
     this.touched = false;

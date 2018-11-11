@@ -1,7 +1,9 @@
 import React from 'react';
 import comps from "../../comps.js";
 import "./List.css"
-const {PopUp,Icon} = comps;
+import tools from "../../tools.js";
+const {copy, scrollConf} = tools;
+const {PopUp,Icon,Scroll} = comps;
 export default function (props) {
   const {config, $actions,playASong,setConf,setConfAct,title, type} = props;
   const {Wrap,Header,HeadNormal} = comps;
@@ -19,7 +21,7 @@ export default function (props) {
   const confFn = {
     sheetList: () => config.list.map((item,index) =>
       index < 20 && (<li className="vuc-list-sheet" key={index} onClick={(ev)=>playASong(item.id,ev)}>
-        <img src={item.picUrl || item.coverImgUrl} alt=""/>
+        {/*<img src={item.picUrl || item.coverImgUrl} alt=""/>*/}
         <div>{item.name}</div>
       </li>)
     ),
@@ -40,23 +42,25 @@ export default function (props) {
   };
   const topFn = {
     songList: () => config.list.coverImgUrl && (<div className="vuc-list-top">
-        <img src={config.list.coverImgUrl} alt=""/>
+        {/*<img src={config.list.coverImgUrl} alt=""/>*/}
         <div className="vuc-list-cover">
           <span>{config.list.name}</span>
-          <b><img src={config.list.creator.avatarUrl} alt=""/>{config.list.creator.nickname}</b>
+          <b>
+            {/*<img src={config.list.creator.avatarUrl} alt=""/>*/}
+            {config.list.creator.nickname}</b>
         </div>
       </div>)
   }
   const constent = (<Wrap stop={true} config={{
     head: (<Header config={headerConf}/>),
-    content: (<div className="vuc-list-wrap">
+    content: (<Scroll config={copy(scrollConf,{derction: "y", itemNum:{x:1,y:1},})}><div className="vuc-list-wrap">
       {topFn[type] && topFn[type]()}
       <div className="list-mid">
         <span>播放全部</span>
         <span>收藏</span>
       </div>
       <div className="vuc-list">{confFn[type] && confFn[type]()}</div>
-    </div>)
+    </div></Scroll>)
   }}/>);
   const func = {setConf: setConf, full: true, derction: "right", flex: true, stop: true};
   return (<PopUp config={config} content={constent} func={func}/>)

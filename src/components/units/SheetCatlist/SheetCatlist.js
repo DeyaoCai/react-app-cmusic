@@ -1,7 +1,9 @@
 import React from 'react';
 import comps from "../../comps.js";
 import "./SheetCatlist.css"
-const {PopUp,Icon} = comps;
+import tools from "../../tools.js";
+const {copy, scrollConf} = tools;
+const {PopUp,Icon,Scroll} = comps;
 export default function (props) {
   const {config, $actions,getSheet,setConf,setConfAct,title, type} = props;
   const {Wrap,Header,HeadNormal} = comps;
@@ -13,7 +15,7 @@ export default function (props) {
   };
   const constent = (<Wrap stop={true} config={{
     head: (<Header config={headerConf}/>),
-    content: (<div className="vuc-sheet-catlist">
+    content: (<Scroll config={copy(scrollConf,{derction: "y", itemNum:{x:1,y:1},})}><div className="vuc-sheet-catlist">
       <div className="vuc-sheet-catlist-all">全部分类</div>
       {
         config.list.map((item, index) => (
@@ -25,7 +27,7 @@ export default function (props) {
           )}</ul>
         ))
       }
-    </div>)
+    </div></Scroll>)
   }}/>);
   const func = {setConf: setConf, full: true, derction: "right", flex: true, stop: true};
   return (<PopUp config={config} content={constent} func={func}/>)
