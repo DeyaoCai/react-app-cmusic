@@ -86,7 +86,7 @@ export default function (props) {
       {
         config.list && config.list.list && config.list.list.map((item,index) => getCode(item)+1 ? (<ul key={index} onClick={() => showDetail(getCode(item))}>
           <div>
-            {/*<img src={item.coverImgUrl} alt=""/>*/}
+            <img src={item.coverImgUrl} alt=""/>
           </div>
           <div>{
             item.tracks.map((key,i)=>(<li key={i}>{key.first}</li>))

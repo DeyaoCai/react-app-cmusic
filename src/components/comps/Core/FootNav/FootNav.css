@@ -11,6 +11,9 @@
   text-shadow: 0 .1rem .1rem #141617;
   border-radius: 2rem;
 }
+.vuc-foot-nav>*.active{
+  color: #c75;
+}
 .vuc-foot-nav>*:active{
   border-radius: 0;
   color: #c75;

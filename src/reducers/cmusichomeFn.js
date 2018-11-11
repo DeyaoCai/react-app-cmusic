@@ -24,7 +24,10 @@ export default {
     return copy(state, {rankList: action.data});
   },
   setNavTabIndex(state, action){
-    return copy(state, {navTabIndex: action.data});
+    return copy(state, {
+      navTabIndex: action.data,
+      navIndex: {index: action.data}
+    });
   },
 };
 /*

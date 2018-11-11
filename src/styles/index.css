@@ -46,4 +46,22 @@ body {
   z-index: 100;
   right: 0;
   opacity: 0;
+  width: 0;
+  height: 0;
+}
+.vuc-scroll-wrap>.vuc-discover{
+  flex: 1;
+}
+.vuc-discover{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  white-space: nowrap;
+}
+.vuc-discover>div{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+  font-size: 1rem;
 }

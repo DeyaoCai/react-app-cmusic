@@ -21,7 +21,7 @@ export default function (props) {
   const confFn = {
     sheetList: () => config.list.map((item,index) =>
       index < 20 && (<li className="vuc-list-sheet" key={index} onClick={(ev)=>playASong(item.id,ev)}>
-        {/*<img src={item.picUrl || item.coverImgUrl} alt=""/>*/}
+        <img src={item.picUrl || item.coverImgUrl} alt=""/>
         <div>{item.name}</div>
       </li>)
     ),
@@ -42,11 +42,11 @@ export default function (props) {
   };
   const topFn = {
     songList: () => config.list.coverImgUrl && (<div className="vuc-list-top">
-        {/*<img src={config.list.coverImgUrl} alt=""/>*/}
+        <img src={config.list.coverImgUrl} alt=""/>
         <div className="vuc-list-cover">
           <span>{config.list.name}</span>
           <b>
-            {/*<img src={config.list.creator.avatarUrl} alt=""/>*/}
+            <img src={config.list.creator.avatarUrl} alt=""/>
             {config.list.creator.nickname}</b>
         </div>
       </div>)

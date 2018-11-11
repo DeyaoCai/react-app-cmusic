@@ -96,10 +96,23 @@ export default (conf) => {
   }
   function getToplistDetail(){$http.toplistDetail()(showRankList)}
   function getTopList(idx) {$http.topList({idx})(res => showSongList(res.playlist.tracks))}
-
+  function setNavIndex(index){
+    $actions.setNavTabIndex({x: index, y:0});
+    navIndex.setIndex({x: index, y:0})
+  }
+  function onLeftEnd(){
+    const num = navIndex.itemNum.x;
+    const index = navIndex.index.x--;
+    setNavIndex(index<0 ? 0 : index);
+  }
+  function onRightEnd(){
+    const num = navIndex.itemNum.x;
+    const index = navIndex.index.x + 1;
+    setNavIndex(index>=num ? num - 1 : index);
+  }
   const {
     $actions,
-    songList, sheetList, djprogramList, actionsList, sheetCatList, rankList,navTabIndex
+    songList, sheetList, djprogramList, actionsList, sheetCatList, rankList,navTabIndex,navIndex
   } = conf;
 
   // songPlace
@@ -129,22 +142,21 @@ export default (conf) => {
   };
   const navConf= {
     index: navTabIndex,
-      list: [{name: "发现",}, {name: "视频",}, {name: "我的",}, {name: "朋友",}, {name: "账号",}],
+    list: [{name: "发现",}, {name: "视频",}, {name: "我的",}, {name: "朋友",}, {name: "账号",}],
   }
 
   const setConfAct = $actions.setActionsList;
   const config = {
     // head: (),
     content: (
-      <Scroll key={0} config={copy(scrollConf,{
-        derction: "x",
-        index: navTabIndex,
-        itemNum:{x:5,y:1},
-        takeOneStepAtATime: true,
-        onRightEnd: () => console.log("right"),
-        onLeftEnd: () => console.log("left"),
-      })}>
-        <Discover config={discoverConf}/>
+      <Scroll config={navIndex}>
+        <div className="vuc-discover">
+          <Discover key={0} config={discoverConf} onLeftEnd={onLeftEnd} onRightEnd={onRightEnd}/>
+          <div key={1}>视屏</div>
+          <div key={2}>我的</div>
+          <div key={3}>朋友</div>
+          <div key={4}>账号</div>
+        </div>
       </Scroll>
     ),
     pop: (<div>
@@ -167,7 +179,7 @@ export default (conf) => {
       <RecmendActs key={13} config={actionsList} $actions={$actions}/>
     </div>),
     foot:(
-      <FootNav config={navConf}/>
+      <FootNav config={navConf} setIndex={setNavIndex}/>
     )
   };
   return (<Wrap config={config}></Wrap>);

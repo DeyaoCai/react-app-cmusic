@@ -12,6 +12,13 @@ const cmusichome = (state, action) => {
     actionsList: {name: "动作",show: false, active: false, songDto: null},
     rankList: {name: "动作",show: false, active: false, songDto: null},
     navTabIndex:{x: 0, y: 0},
+    navIndex: {
+      derction: "x",
+      index: {x: 0, y: 0},
+      itemNum:{x:5,y:1},
+      takeOneStepAtATime: true,
+      noOffset: true,
+    }
   });
   const curFn = cmusichomeFn[action.type]; // 根据action 查找分支函数
   return curFn ? curFn(state, action) : state; // 没找到处理函数 则返回上一次的 state

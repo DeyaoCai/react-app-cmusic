@@ -1,18 +1,18 @@
 import tools from '../../../tools.js';
 import React from 'react';
 import "./Scroll.css";
-const {Drag} = tools;
+const {Drag, getClass} = tools;
 class Scroll extends React.Component {
-
   innerStyle () {
     const  state = this.state;
+    const conf = this.props.config
     const sp = this.drag.getSpeed();
     let ti = (Math.pow(sp.x / 20, 2) + Math.pow(sp.y / 20, 2)) / 4 + 0.3;
-    const touching = this.drag.isTouching;
+    const touching = conf.noOffset ? false : this.drag.isTouching;
     const pos = state.nowPosi;
     touching || (state.posi = { x: pos.x, y: pos.y, });
     ti > 1 && (ti = 1);
-    if (this.props.config.takeOneStepAtATime) ti = 0.3;
+    if (conf.takeOneStepAtATime) ti = 0.3;
     return {
       transform: `translate(${pos.x}px,${pos.y}px)`,
       transition: `transform ${touching ? 0 : ti}s ease-out`,
@@ -157,7 +157,6 @@ class Scroll extends React.Component {
     if (dVal.y > 0) pos.y = pos.y * f;
     else if (pos.y < dVal.y) pos.y = (pos.y - dVal.y) * f + dVal.y;
   }
-
   setIndex (obj) {
     let { x, y, } = obj;
     const {config} = this.props;
@@ -185,6 +184,8 @@ class Scroll extends React.Component {
     this.setState({});
   }
   moveEv (ev) {
+    const conf =this.props.config;
+    if(conf.noOffset) return;
     const state = this.state;
     if (this._isLoading) return;
     this.drag.moveEv(ev);
@@ -258,7 +259,7 @@ class Scroll extends React.Component {
       onTouchMove={this.moveEv}
       onTouchEnd={this.endEv}
     >
-      <div ref="inner" onTransitionEnd={this.transitionEnd} className="vuc-scroll-wrap" style={this.innerStyle()} >{this.props.children}</div>
+      <div ref="inner" onTransitionEnd={this.transitionEnd} className={getClass("vuc-scroll-wrap",{x: this.props.config.derction === "x"})} style={this.innerStyle()} >{this.props.children}</div>
     </div>)
   }
 }

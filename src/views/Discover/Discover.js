@@ -13,9 +13,11 @@ const {
 // 播放歌曲
 
 export  default function Discover(props) {
+  const {config,onLeftEnd,onRightEnd} = props;
   const {
     getRecommendSongs,getRecommendResource,getPersonalizedNewsong,getPersonalized,getPlaylistCatlist,getToplistDetail,
-  } = props.config;
+
+  } = config;
 
   // songPlace
   const songPlace = {
@@ -45,6 +47,8 @@ export  default function Discover(props) {
       index: {x:0,y:0},
       itemNum:{x: 2,y: 1},
       takeOneStepAtATime: true,
+      onLeftEnd,
+      onRightEnd,
     })}>
       <div className="vuc-discover">
         <Scroll config={copy(scrollConf,{derction: "y"})}>
