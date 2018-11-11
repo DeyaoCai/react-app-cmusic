@@ -7,6 +7,7 @@ const devBranch = require("./updataVertion/devBranch.js");
 const pathes = fs.readdirSync("../");
 const cwd = process.cwd().split(/[\\\/]/).pop();
 const oriBizType = cwd.match(/(app|wxm)-[a-zA-Z0-9]+/); // (app|wxm)-xxx
+
 let bizType = oriBizType && oriBizType[0]; // 业务类型
 if (cwd === "desktopapp")  bizType =cwd;
 let stdinType = null;
