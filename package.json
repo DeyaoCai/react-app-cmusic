@@ -14,6 +14,7 @@
     "warning": "^4.0.2"
   },
   "scripts": {
+    "push": "node ./read/addVersion.js",
     "start": "set PORT=3334 && react-scripts start",
     "read": "node ./read/index.js",
     "build": "react-scripts build",
