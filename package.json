@@ -1,6 +1,6 @@
 {
   "name": "cmusic",
-  "version": "0.1.0",
+  "version": "2018.11.12-22-46-30",
   "private": true,
   "main": "index.js",
   "dependencies": {
@@ -15,7 +15,8 @@
     "warning": "^4.0.2"
   },
   "scripts": {
-    "push": "push --todev",
+    "push": "push --push",
+    "push-not-publish": "push --push --not-publish",
     "start": "set PORT=3334 && react-scripts start",
     "read": "ctools read",
     "build": "react-scripts build",
