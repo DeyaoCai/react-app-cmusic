@@ -2,6 +2,7 @@
   "name": "cmusic",
   "version": "0.1.0",
   "private": true,
+  "main": "index.js",
   "dependencies": {
     "history": "^4.7.2",
     "react": "^16.6.0",
@@ -16,7 +17,7 @@
   "scripts": {
     "push": "push --todev",
     "start": "set PORT=3334 && react-scripts start",
-    "read": "node ./read/index.js",
+    "read": "ctools read",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
