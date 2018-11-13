@@ -1,8 +1,11 @@
 import ctools from 'ctools';
 import React from 'react';
 import "./Scroll.css";
-const {Drag, getClass} = ctools;
+const {Drag, getClass, getStyle} = ctools;
 class Scroll extends React.Component {
+  setStyle(){
+    this.refs.inner.style = getStyle(this.innerStyle());
+  }
   innerStyle () {
     const  state = this.state;
     const conf = this.props.config
@@ -13,11 +16,9 @@ class Scroll extends React.Component {
     touching || (state.posi = { x: pos.x, y: pos.y, });
     ti > 1 && (ti = 1);
     if (conf.takeOneStepAtATime) ti = 0.3;
-    return {
-      transform: `translate(${pos.x}px,${pos.y}px)`,
-      transition: `transform ${touching ? 0 : ti}s ease-out`,
-      // height: this.drag.prevent === "y" ? "100%" : "auto"
-    }
+    const ret = {transform: `translate3d(${pos.x}px,${pos.y}px,0px)`,};
+    touching || (ret.transition = `transform ${ti}s ease-out`)
+    return ret;
   }
   init () {
     // 初始化， 为了让用户少输入，所以这里写上一些默认值
@@ -37,12 +38,6 @@ class Scroll extends React.Component {
     itemNum.y || (itemNum.y = 1);
     conf.setIndex = this.setIndex;
   }
-  // 这里是计算属性
-  // indexs () {this.setIndex(this.indexs);}
-  // prevent () {
-  //   this.drag.prevent = this.props.prevent;
-  //   this.props.config.reSetPosiWhenDerctionChanged && (this.props.nowPosi = { x: 0, y: 0, });
-  // }
 
   getOffset (){
     const touching = this.drag.isTouching;
@@ -102,7 +97,7 @@ class Scroll extends React.Component {
     this.props.config.index[derc] = index;
     pos[derc] = der * index * perLen;
   }
-  getWrapSize () {
+  getCaChedWrapSice(){
     const refs = this.refs;
     const $el = refs.wrap;
     if (!$el) return { wrap: { x: 0, y: 0, }, inner: { x: 0, y: 0, }, };
@@ -121,7 +116,11 @@ class Scroll extends React.Component {
     }
 
     const inner = { x: ix, y: iy, };
-    return { wrap, inner, };
+    this.CaChedWrapSice = { wrap, inner, };
+    return this.CaChedWrapSice;
+  }
+  getWrapSize () {
+    return this.CaChedWrapSice || this.getCaChedWrapSice();
   }
 
   touchingLimit (pos, dVal) {
@@ -175,13 +174,16 @@ class Scroll extends React.Component {
       state.nowPosi.y = this.getWrapSize().wrap.y * -y;
       state.posi.y = state.nowPosi.y;
     }
-    this.setState({});
+    this.setStyle({});
+    // this.setState({});
   }
   touchEv (ev) {
     this.hasOnEndEv = false;
     if (this._isLoading) return;
     this.drag.touchEv(ev);
-    this.setState({});
+    this.CaChedWrapSice = null;
+    this.setStyle({});
+    // this.setState({});
   }
   moveEv (ev) {
     const conf =this.props.config;
@@ -190,7 +192,9 @@ class Scroll extends React.Component {
     if (this._isLoading) return;
     this.drag.moveEv(ev);
     state.nowPosi = this.getLimitedPosition();
-    this.setState({});
+    this.getWrapSize();
+    this.setStyle({});
+    // this.setState({});
   }
   transitionEnd(){
   };
@@ -213,11 +217,14 @@ class Scroll extends React.Component {
     this.props.config.onTouchEnd && this.props.config.onTouchEnd(this.props.config.index, this.props.config);
     this.props.config.takeOneStepAtATime && this.setIndex(this.props.config.index);
     this.props.config.upDateIndexOnEnd && this.props.config.upDateIndexOnEnd();
-    this.setState({});
+    this.setStyle({});
+    // this.setState({});
   }
   constructor(props) {
     super(props);
     this.drag = new Drag();
+    this.prevMove = null;
+    this.CaChedWrapSice = null;
     this.state = {
       posi: { x: 0, y: 0, },
       nowPosi: { x: 0, y: 0, },
@@ -246,6 +253,8 @@ class Scroll extends React.Component {
     this.evalIndex = this.evalIndex.bind(this);
     this.transitionEnd = this.transitionEnd.bind(this);
     this.init = this.init.bind(this);
+    this.setStyle = this.setStyle.bind(this);
+    this.getCaChedWrapSice = this.getCaChedWrapSice.bind(this);
 
     this.init && this.init();
   }
@@ -259,7 +268,7 @@ class Scroll extends React.Component {
       onTouchMove={this.moveEv}
       onTouchEnd={this.endEv}
     >
-      <div ref="inner" onTransitionEnd={this.transitionEnd} className={getClass("vuc-scroll-wrap",{x: this.props.config.derction === "x"})} style={this.innerStyle()} >{this.props.children}</div>
+      <div ref="inner" onTransitionEnd={this.transitionEnd} className={getClass("vuc-scroll-wrap",{x: this.props.config.derction === "x"})}>{this.props.children}</div>
     </div>)
   }
 }

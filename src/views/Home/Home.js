@@ -57,11 +57,11 @@ export default (conf) => {
 
   const {
     $actions,
-    songList, sheetList, djprogramList, actionsList, sheetCatList, rankList,navTabIndex,discoverTabIndex,
+    songList, sheetList, djprogramList, actionsList, sheetCatList, rankList,navTabIndex,discoverTabIndex,songSearch,
   } = conf;
 
   const discoverConf={
-    discoverTabIndex,showSongList,showSheetList,onRightEnd, onLeftEnd
+    discoverTabIndex,showSongList,showSheetList,songSearch,onRightEnd, onLeftEnd,playASong,setConfAct
   };
   const navConf= {
     index: navTabIndex.index,

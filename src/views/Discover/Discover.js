@@ -9,17 +9,17 @@ import $http from "../../http/http";
 const  scrollConf= tools.scrollConf;
 const {copy} = ctools;
 const {
-  RecmendActs, List, SheetCatlist, RankList
+  RecmendActs, List, SheetCatlist, RankList, SearchList
 } = units;
 const {
-  Wrap,Search,FootNav, Tab, Place, Scroll,Header,Icon
+  Wrap,Search,FootNav, Tab, Place, Scroll,Header,Icon,
 } = comps;
 // 播放歌曲
 
 export  default function Discover(props) {
   const {config,onLeftEnd,onRightEnd,$actions} = props;
   const {
-    discoverTabIndex,showSongList,showSheetList,
+    discoverTabIndex,showSongList,showSheetList,songSearch,playASong,setConfAct
   } = config;
   discoverTabIndex.onLeftEnd = onLeftEnd;
   discoverTabIndex.onRightEnd = onRightEnd;
@@ -110,22 +110,31 @@ export  default function Discover(props) {
   return (<Wrap config={{
     head:<Header config={{
       left: (<Icon icon={"back1"} handerclick={()=>{}}/>),
-      title: (<Search key={0}/>),
+      title: (<Search key={0} config={songSearch} $actions={$actions} playASong={playASong}/>),
       right: (<Icon icon={"gengduo1"}/>),
     }}/>,
-    content:(<Scroll key={0} config={discoverTabIndex}>
-      <div className="vuc-discover">
-        <Scroll config={copy(scrollConf,{derction: "y"})}>
-          <Place config={songPlace}/>
-          <Place config={sheetPlace}/>
-          <Place config={rankPlace}/>
-        </Scroll>
-        <Scroll config={copy(scrollConf,{derction: "y"})}>
-          <Place config={songPlace}/>
-          <Place config={rankPlace}/>
-          <Place config={sheetPlace}/>
-        </Scroll>
-      </div>
-    </Scroll>)
+    content:([
+      <Scroll key={0} config={discoverTabIndex}>
+        <div className="vuc-discover">
+          <Scroll config={copy(scrollConf,{derction: "y"})}>
+            <Place config={songPlace}/>
+            <Place config={sheetPlace}/>
+            <Place config={rankPlace}/>
+          </Scroll>
+          <Scroll config={copy(scrollConf,{derction: "y"})}>
+            <Place config={songPlace}/>
+            <Place config={rankPlace}/>
+            <Place config={sheetPlace}/>
+          </Scroll>
+        </div>
+      </Scroll>,
+      <SearchList
+        key={1}
+        $actions={$actions}
+        playASong={playASong}
+        setConf={$actions.setSongSearch}
+        setConfAct={setConfAct}
+        config={songSearch}/>
+    ])
   }}/>)
 }

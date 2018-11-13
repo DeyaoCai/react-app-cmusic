@@ -24,6 +24,7 @@ const cmusichome = (state, action) => {
       itemNum:{x: 2,y: 1},
       takeOneStepAtATime: true,
     },
+    songSearch: {show: false, active: false, list:[]},
   });
   const curFn = cmusichomeFn[action.type]; // 根据action 查找分支函数
   return curFn ? curFn(state, action) : state; // 没找到处理函数 则返回上一次的 state

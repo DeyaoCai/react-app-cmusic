@@ -22,6 +22,9 @@ export default {
   setRankList(state, action){
     return copy(state, {rankList: action.data});
   },
+  setSongSearch(state, action){
+    return copy(state, {songSearch: action.data});
+  },
   setNavTabIndex(state, action){
     return copy(state, {navTabIndex: {index: action.data}});
   },

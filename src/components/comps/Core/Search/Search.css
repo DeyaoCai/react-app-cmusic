@@ -5,8 +5,8 @@
 }
 
 .vuc-search input{
-  line-height: 1.5rem;
-  padding: 0 .6rem;
+  line-height: .9rem;
+  padding: .3rem .6rem;
   width: 100%;
   color: #fff;
   transition: all .3s;

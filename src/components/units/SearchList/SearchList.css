@@ -1,0 +1,130 @@
+.vuc-search-list{
+  font-size: 0;
+}
+.vuc-search-list-top{
+  margin: .6rem .6rem 0 .6rem;
+  padding-bottom: .6rem;
+  font-size: 0;
+}
+.vuc-search-list-top *{
+  vertical-align: middle;
+}
+.vuc-search-list-top>img{
+  width: 35%;
+  border-radius: .2rem;
+}
+.vuc-search-list-cover{
+  display: inline-block;
+  width: 65%;
+  padding: .4rem;
+}
+.vuc-search-list-top>div>span{
+  font-size: .65rem;
+  line-height: 1.2rem;
+  padding: .6rem 0;
+  display: block;
+}
+.vuc-search-list-cover>b{
+  font-size: .6rem;
+}
+.vuc-search-list-cover>b>img{
+  width: 1.2rem;
+  border-radius: .6rem;
+  margin-right: .4rem;
+}
+.list-mid{
+  margin: .6rem;
+  display: flex;
+  font-size: .75rem;
+  border-bottom: 1px solid #fff;
+  line-height: 1.8rem;
+  border-top: 1px solid #fff;
+  border-radius: .6rem .6rem .3rem .3rem;
+}
+.list-mid>span:first-child{
+  flex: 1;
+  padding-left: .6rem;
+}
+.list-mid>span:last-child{
+  width: 30%;
+  color: #333;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 0 .6rem .3rem 0;
+}
+
+.vuc-search-list-song{
+  font-size: .65rem;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  background-color: rgba(255,255,255,0);
+  transition: all .6s;
+  position: relative;
+  padding: .6rem .4rem;
+  margin: 0 .75rem;
+}
+.vuc-search-list-song:active{
+  background-color: rgba(255,255,255,.2);
+}
+.vuc-search-list-song>img{
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: .3rem;
+}
+.vuc-search-list-song>div:nth-child(2){
+  overflow: hidden;
+}
+.vuc-search-list-song>div:last-child{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.5rem;
+  line-height: 2rem;
+  text-align: center;
+}
+.vuc-search-list-song>div>div{
+  padding-bottom: .15rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: .65rem;
+  width: 100%;
+}
+.vuc-search-list-song>div>span{
+  display: block;
+  width: 100%;
+  font-size: .5rem;
+  color: #ccc;
+  line-height: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vuc-search-list-sheet{
+  display: inline-block;
+  width: 50%;
+  padding-bottom: .6rem;
+}
+.vuc-search-list-sheet:nth-child(2n){
+  padding-right: .3rem;
+  padding-left: .1rem;
+}
+.vuc-search-list-sheet:nth-child(2n+1){
+  padding-left: .3rem;
+  padding-right: .1rem;
+}
+.vuc-search-list-sheet>img{
+  width: 100%;
+  border-radius: .2rem;
+}
+.vuc-search-list-sheet>div{
+  font-size: .6rem;
+  line-height: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

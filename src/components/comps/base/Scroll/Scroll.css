@@ -13,6 +13,8 @@
   display: flex;
   flex-direction: column;
   box-orient:vertical;
+  will-change: transfrom,transition;
+  contain: paint;
 }
 .vuc-scroll-wrap.x{
   height: 100%;
