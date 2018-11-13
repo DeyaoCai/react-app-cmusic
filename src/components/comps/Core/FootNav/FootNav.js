@@ -1,7 +1,7 @@
 import React from 'react';
 import "./FootNav.css";
-import tools from "../../../tools.js";
-const {getClass} = tools;
+import ctools from "ctools";
+const {getClass} = ctools;
 export default function(props){
   const {config,setIndex} = props;
   const { list, index,} = config;

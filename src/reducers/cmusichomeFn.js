@@ -1,6 +1,5 @@
-import tools from "../components/tools.js";
-
-const {copy} = tools;
+import ctools from "ctools";
+const {copy} = ctools;
 export default {
   // 歌单
   setSheetList(state, action) {

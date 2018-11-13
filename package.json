@@ -4,12 +4,15 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
+    "ctools": "latest",
     "history": "^4.7.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-redux": "^5.1.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "redux": "^4.0.1",
     "resolve-pathname": "^2.2.0",
     "value-equal": "^0.4.0",
     "warning": "^4.0.2"
@@ -18,6 +21,7 @@
     "push-not-publish": "push --push --not-publish",
     "start": "set PORT=3334 && react-scripts start",
     "read": "ctools read",
+    "i ctools": "npm i ctools",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

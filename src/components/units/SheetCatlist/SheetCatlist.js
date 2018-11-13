@@ -1,8 +1,10 @@
 import React from 'react';
 import comps from "../../comps.js";
 import "./SheetCatlist.css"
+import ctools from "ctools";
 import tools from "../../tools.js";
-const {copy, scrollConf} = tools;
+const  scrollConf= tools.scrollConf;
+const {copy} = ctools;
 const {PopUp,Icon,Scroll} = comps;
 export default function (props) {
   const {config, $actions,getSheet,setConf,setConfAct,title, type} = props;

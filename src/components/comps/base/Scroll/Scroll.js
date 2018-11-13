@@ -1,7 +1,7 @@
-import tools from '../../../tools.js';
+import ctools from 'ctools';
 import React from 'react';
 import "./Scroll.css";
-const {Drag, getClass} = tools;
+const {Drag, getClass} = ctools;
 class Scroll extends React.Component {
   innerStyle () {
     const  state = this.state;

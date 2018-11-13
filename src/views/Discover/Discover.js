@@ -2,8 +2,11 @@ import React from "react";
 
 import units from "../../components/units.js";
 import comps from "../../components/comps.js";
+import ctools from "ctools";
+// import {scrollConf} from "../../components/tools.js";
 import tools from "../../components/tools.js";
-const {copy, scrollConf} = tools;
+const  scrollConf= tools.scrollConf;
+const {copy} = ctools;
 const {
   RecmendActs, List, SheetCatlist, RankList
 } = units;
@@ -39,7 +42,6 @@ export  default function Discover(props) {
       {tabConf: {name: "排行榜", icon: "456"}, onClick: getToplistDetail},
     ]
   };
-
   return (<Wrap config={{
     head: [<Search key={0}/>, <Tab key={1}/>],
     content:(<Scroll key={0} config={copy(scrollConf,{

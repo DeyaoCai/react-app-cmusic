@@ -2,7 +2,9 @@ import React from 'react';
 import comps from "../../comps.js";
 import "./List.css"
 import tools from "../../tools.js";
-const {copy, scrollConf} = tools;
+import ctools from "ctools";
+const {copy} = ctools;
+const { scrollConf} = tools;
 const {PopUp,Icon,Scroll} = comps;
 export default function (props) {
   const {config, $actions,playASong,setConf,setConfAct,title, type} = props;
