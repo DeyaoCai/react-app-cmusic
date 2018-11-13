@@ -12,7 +12,7 @@ const {
   RecmendActs, List, SheetCatlist, RankList
 } = units;
 const {
-  Wrap,Search,FootNav, Tab, Place, Scroll
+  Wrap,Search,FootNav, Tab, Place, Scroll,Header,Icon
 } = comps;
 // 播放歌曲
 
@@ -108,7 +108,11 @@ export  default function Discover(props) {
   }
 
   return (<Wrap config={{
-    head: [<Search key={0}/>, <Tab key={1} config={navConf} setIndex={setDiscoverTabIndex}/>],
+    head:<Header config={{
+      left: (<Icon icon={"back1"} handerclick={()=>{}}/>),
+      title: (<Search key={0}/>),
+      right: (<Icon icon={"gengduo1"}/>),
+    }}/>,
     content:(<Scroll key={0} config={discoverTabIndex}>
       <div className="vuc-discover">
         <Scroll config={copy(scrollConf,{derction: "y"})}>

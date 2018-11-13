@@ -1,8 +1,21 @@
 .vuc-search{
   display: flex;
-  padding: .4rem 0;
-  line-height: 1.8rem;
+  padding: .5rem 2.5rem;
   border-bottom: 1px solid #543;
+}
+
+.vuc-search input{
+  line-height: 1.5rem;
+  padding: 0 .6rem;
+  width: 100%;
+  color: #fff;
+  transition: all .3s;
+  border-radius: .2rem;
+  background-color:  rgba(255,255,255,.2);
+  border: 1px solid rgba(255,255,255,.4);
+}
+.vuc-search input:focus{
+  background-color:  rgba(255,255,255,.1);
 }
 .vuc-search>span:first-child,
 .vuc-search>span:last-child{
