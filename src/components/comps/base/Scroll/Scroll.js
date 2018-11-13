@@ -211,8 +211,8 @@ class Scroll extends React.Component {
       this.props.config.index = posi;
     } else state.nowPosi = this.getLimitedPosition();
     this.props.config.onTouchEnd && this.props.config.onTouchEnd(this.props.config.index, this.props.config);
-    this.drag.endEv();
     this.props.config.takeOneStepAtATime && this.setIndex(this.props.config.index);
+    this.props.config.upDateIndexOnEnd && this.props.config.upDateIndexOnEnd();
     this.setState({});
   }
   constructor(props) {

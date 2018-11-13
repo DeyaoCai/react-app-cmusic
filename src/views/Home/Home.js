@@ -27,42 +27,10 @@ function playASong(id,ev){
 export default (conf) => {
 
   const NeedHideOtherPop = false;
-
-  // 每日推荐 // 歌曲 // 歌单
-  function getRecommendSongs() {
-    $http.recommendSongs()(res=>{
-      showSongList(res.recommend);
-    });
-  }
-  function getRecommendResource() {
-    $http.recommendResource()(res=>{
-      $actions.setSheetList({show:true, list: res.recommend});
-      setTimeout(() => $actions.setSheetList({active:true}), 50);
-    });
-  }
-  // 私人
-  function getPersonalizedNewsong(){
-    $http.personalizedNewsong()(res=>{
-      showSongList(res.result);
-    });
-  }
-  function getPersonalized() {
-    $http.personalized()(res=>{
-      showSheetList(res.result);
-    });
-  }
   // 歌单详情
   function getSheetDetail(id){
     $http.playlistDetail({id})(res=>{
       showSongList(res.playlist);
-    })
-  }
-  function getPlaylistCatlist(){
-    $http.playlistCatlist()(res=>{
-      const arr = Object.keys(res.categories).map(item=>({code: item, name: res.categories[item], list: []}));
-      res.sub.forEach(item => arr[item.category].list.push(item));
-      arr.forEach(item=>item.list.splice(4,0,{}));
-      showSheetCatList(arr);
     })
   }
   function getTopPlaylist(id){
@@ -70,7 +38,6 @@ export default (conf) => {
       showSheetList(res.playlists);
     })
   }
-
   function showSongList(list) {
     $actions.setSongList({show:true, list: list});
     setTimeout(() => $actions.setSongList({active:true}),50);
@@ -80,78 +47,48 @@ export default (conf) => {
       setTimeout(() => $actions.setRankList({active:false}), 800);
     }
   }
-
   function showSheetList(list) {
     $actions.setSheetList({show:true, list: list});
     setTimeout(() => $actions.setSheetList({active:true}), 50);
     if (NeedHideOtherPop) setTimeout(() => $actions.setSheetCatList({active:false}), 800);
   }
-  function showSheetCatList(list) {
-    $actions.setSheetCatList({list: list, show:true});
-    setTimeout(() => $actions.setSheetCatList({active:true}),50);
-  }
-  function showRankList(list){
-    $actions.setRankList({show:true, list: list});
-    setTimeout(() => $actions.setRankList({active:true}), 50);
-  }
-  function getToplistDetail(){$http.toplistDetail()(showRankList)}
   function getTopList(idx) {$http.topList({idx})(res => showSongList(res.playlist.tracks))}
+
+
+  const {
+    $actions,
+    songList, sheetList, djprogramList, actionsList, sheetCatList, rankList,navTabIndex,discoverTabIndex,
+  } = conf;
+
+  const discoverConf={
+    discoverTabIndex,showSongList,showSheetList,onRightEnd, onLeftEnd
+  };
+  const navConf= {
+    index: navTabIndex.index,
+    list: [{name: "发现",}, {name: "视频",}, {name: "我的",}, {name: "朋友",}, {name: "账号",}],
+  };
+
   function setNavIndex(index){
+    navTabIndex.setIndex({x: index, y:0});
     $actions.setNavTabIndex({x: index, y:0});
-    navIndex.setIndex({x: index, y:0})
   }
   function onLeftEnd(){
-    const num = navIndex.itemNum.x;
-    const index = navIndex.index.x--;
+    const index = navTabIndex.index.x--;
     setNavIndex(index<0 ? 0 : index);
   }
   function onRightEnd(){
-    const num = navIndex.itemNum.x;
-    const index = navIndex.index.x + 1;
+    const num = navTabIndex.itemNum.x;
+    const index = navTabIndex.index.x + 1;
     setNavIndex(index>=num ? num - 1 : index);
-  }
-  const {
-    $actions,
-    songList, sheetList, djprogramList, actionsList, sheetCatList, rankList,navTabIndex,navIndex
-  } = conf;
-
-  // songPlace
-  const songPlace = {
-    funcList: [
-      {tabConf: {name: "歌曲", icon: "456"}, onClick: getRecommendSongs},
-      {tabConf: {name: "歌单", icon: "456"}, onClick: getRecommendResource},
-      {tabConf: {name: "每日推荐", icon: "456"}, onClick: () => console.log("私人FM")},
-    ]
-  };
-  const sheetPlace = {
-    funcList: [
-      {tabConf: {name: "歌曲", icon: "456"}, onClick: getPersonalizedNewsong},
-      {tabConf: {name: "歌单", icon: "456"}, onClick: getPersonalized},
-      {tabConf: {name: "私人", icon: "456"}, onClick: getPlaylistCatlist},
-    ]
-  };
-  const rankPlace = {
-    funcList: [
-      {tabConf: {name: "排行榜", icon: "456"}, onClick: getToplistDetail},
-    ]
-  };
-
-
-  const discoverConf={
-    getRecommendSongs,getRecommendResource,getPersonalizedNewsong,getPersonalized,getPlaylistCatlist,getToplistDetail
-  };
-  const navConf= {
-    index: navTabIndex,
-    list: [{name: "发现",}, {name: "视频",}, {name: "我的",}, {name: "朋友",}, {name: "账号",}],
   }
 
   const setConfAct = $actions.setActionsList;
   const config = {
     // head: (),
     content: (
-      <Scroll config={navIndex}>
+      <Scroll config={navTabIndex}>
         <div className="vuc-discover">
-          <Discover key={0} config={discoverConf} onLeftEnd={onLeftEnd} onRightEnd={onRightEnd}/>
+          <Discover key={0} config={discoverConf} onLeftEnd={onLeftEnd} onRightEnd={onRightEnd} $actions={$actions}/>
           <div key={1}>视屏</div>
           <div key={2}>我的</div>
           <div key={3}>朋友</div>
