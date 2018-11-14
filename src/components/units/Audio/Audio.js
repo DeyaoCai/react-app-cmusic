@@ -7,45 +7,34 @@ const {copy} = ctools;
 const { scrollConf} = tools;
 const {PopUp,Icon,Scroll} = comps;
 export default function (props) {
-  const {config, $actions,playASong,setConf,setConfAct,title, type} = props;
-  console.log(comps)
+  const {config, $actions,playASong,setConfAct,title, type} = props;
   const {Wrap,Header,HeadNormal} = comps;
-
-  function hidePop(e){setConf({active: false});}
-  function openAct(songDto){
-    setConfAct({show:true, songDto: songDto});
-    setTimeout(() => {setConfAct({active:true});},50);
+  const songDto = config.songDto || {};
+  function togglePlay() {
+    const audio = document.querySelector("#audio");
+    audio.paused ? audio.play() : audio.pause();
   }
-  const confFn = {
-    songList: () => (
-      (config.list.tracks || config.list).map((item,index) =>
-        index < 20 && (<li className="vuc-search-list-song" key={index} onClick={()=>playASong(item.id)}>
-          <div><div>{item.name}</div><span>{(item.ar || item.artists) && (item.ar || item.artists).map(item=>item.name).join(" ")}</span></div>
-          <Icon icon={"gengduo1"} handerclick={()=>openAct(item)}/>
-        </li>)
-      )
-    ),
+  function hidePop(e){$actions.setPlayconf({active: false});}
+  const headerConf = {
+    left: (<Icon icon={"back1"} handerclick={hidePop}/>),
+    title: (<HeadNormal content={<div className="vuc-audio-title">{songDto.name}</div>}/>),
+    right: (<Icon icon={"gengduo1"}/>),
   };
-  const topFn = {
-    songList: () => config.list.coverImgUrl && (<div className="vuc-search-list-top">
-      <img src={config.list.coverImgUrl} alt=""/>
-      <div className="vuc-search-list-cover">
-        <span>{config.list.name}</span>
-        <b>
-          <img src={config.list.creator.avatarUrl} alt=""/>
-          {config.list.creator.nickname}</b>
-      </div>
-    </div>)
-  }
   const constent = (<Wrap stop={true} config={{
-    content: (<Scroll config={copy(scrollConf,{derction: "y", itemNum:{x:1,y:1},})}><div className="vuc-search-list-wrap">
-      <div className="list-mid">
-        <span>播放全部</span>
-        <span>收藏</span>
+    head: (<Header config={headerConf}/>),
+    content: (<Scroll config={copy(scrollConf,{derction: "y", itemNum:{x:1,y:1},})}>
+      <div className="vuc-audio-cont">
+        <b style={{
+          backgroundImage: `url(${songDto && songDto.album && songDto.album.blurPicUrl})`
+        }}/>
+        <span onClick={togglePlay} className="vuc-audio-img" style={{
+          backgroundImage: `url(${songDto && songDto.album && songDto.album.blurPicUrl})`
+        }}/>
       </div>
-      <div className="vuc-search-list">{confFn[type || "songList"] && confFn[type || "songList"]()}</div>
-    </div></Scroll>)
+    </Scroll>),
+    foot: (<div>
+      <audio src="" id="audio" controls="controls" autoPlay="autoplay"/></div>)
   }}/>);
-  const func = {setConf: setConf, full: true, derction: "botto,", flex: true, stop: true};
+  const func = {setConf: $actions.setPlayconf, full: true, derction: "botto,", flex: true, stop: true};
   return (<PopUp config={config} content={constent} func={func}/>)
 }

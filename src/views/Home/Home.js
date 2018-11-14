@@ -15,14 +15,7 @@ const {
   Wrap,FootNav,Scroll
 } = comps;
 
-// 播放歌曲
-function playASong(id,ev){
-  $http.songUrl({id})(res=>{
-    const audio = document.querySelector("#audio");
-    audio.src = res.data[0].url;
-    // audio.play();
-  })
-};
+
 
 export default (conf) => {
 
@@ -37,6 +30,19 @@ export default (conf) => {
     $http.topPlaylist({limit:20,order: "new",cat: id})(res=>{
       showSheetList(res.playlists);
     })
+  }
+// 播放歌曲
+  function playASong(songDto,ev){
+    $http.songUrl({id: songDto.id || songDto})(res=>{
+      const audio = document.querySelector("#audio");
+      audio.src = res.data[0].url;
+      showPlayPage(songDto);
+      console.log(songDto)
+    })
+  };
+  function showPlayPage(songDto) {
+    $actions.setPlayconf({show:true, songDto: songDto});
+    setTimeout(() => $actions.setPlayconf({active:true}),50);
   }
   function showSongList(list) {
     $actions.setSongList({show:true, list: list});
@@ -57,11 +63,11 @@ export default (conf) => {
 
   const {
     $actions,
-    songList, sheetList, actionsList, sheetCatList, rankList,navTabIndex,discoverTabIndex,songSearch,
+    songList, sheetList, actionsList, sheetCatList, rankList,navTabIndex,discoverTabIndex,songSearch,playconf
   } = conf;
 
   const discoverConf={
-    discoverTabIndex,showSongList,showSheetList,songSearch,onRightEnd, onLeftEnd,playASong
+    discoverTabIndex,showSongList,showSheetList,songSearch,onRightEnd, onLeftEnd,playASong,showPlayPage
   };
   const navConf= {
     index: navTabIndex.index,
@@ -107,14 +113,20 @@ export default (conf) => {
       <List key={1} title={"推荐歌单"}  type={"sheetList"} $actions={$actions} playASong={getSheetDetail}
         setConf={$actions.setSheetList}
         setConfAct={setConfAct}
-            config={sheetList}/>
+        config={sheetList}/>
       <List key={2} title={"每日推荐"} $actions={$actions} playASong={playASong}
         type={"songList"}
         setConf={$actions.setSongList}
         setConfAct={setConfAct}
         config={songList}/>
       <RecmendActs key={13} config={actionsList} $actions={$actions}/>
-      <Audio/>
+      <Audio
+        $actions={$actions}
+        config={playconf}
+        playASong={playASong}
+        setConfAct={setConfAct}
+        setConf={$actions.setSongList}
+      />
     </div>),
     foot:(
       <FootNav config={navConf} setIndex={setNavIndex}/>

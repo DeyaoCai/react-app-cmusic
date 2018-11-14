@@ -28,10 +28,12 @@ export default {
   setNavTabIndex(state, action){
     return copy(state, {navTabIndex: {index: action.data}});
   },
+  setPlayconf(state, action){
+    return copy(state, {playconf: action.data});
+  },
   setDiscoverTabIndex(state, action){
     return copy(state, {discoverTabIndex: {index: action.data}});
   },
-
 };
 /*
 设置一个弹窗的

@@ -19,7 +19,7 @@ const {
 export  default function Discover(props) {
   const {config,onLeftEnd,onRightEnd,$actions} = props;
   const {
-    discoverTabIndex,showSongList,showSheetList,songSearch,playASong,setConfAct
+    discoverTabIndex,showSongList,showSheetList,songSearch,playASong,setConfAct,showPlayPage
   } = config;
   discoverTabIndex.onLeftEnd = onLeftEnd;
   discoverTabIndex.onRightEnd = onRightEnd;
@@ -105,7 +105,7 @@ export  default function Discover(props) {
     head:<Header config={{
       left: (<Icon icon={"back1"} handerclick={()=>$actions.setSongSearch({active: false})}/>),
       title: (<Search key={0} config={songSearch} $actions={$actions} playASong={playASong}/>),
-      right: (<Icon icon={"gengduo1"}/>),
+      right: (<Icon icon={"gengduo1"} handerclick={showPlayPage}/>),
     }}/>,
     content:([
       <Scroll key={0} config={discoverTabIndex}>

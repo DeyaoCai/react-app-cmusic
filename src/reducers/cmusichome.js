@@ -11,6 +11,7 @@ const cmusichome = (state, action) => {
     djprogramList: {name: "电台", list: [], show: false,active: false},
     actionsList: {name: "动作",show: false, active: false, songDto: null},
     rankList: {name: "动作",show: false, active: false, songDto: null},
+    playconf: {show: false, active: false, songDto: null},
     navTabIndex: {
       derction: "x",
       index: {x: 0, y: 0},

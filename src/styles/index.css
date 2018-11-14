@@ -42,12 +42,7 @@ body {
   width: 0;
 }
 #audio{
-  position: absolute;
-  z-index: 0;
-  right: 0;
-  opacity: 1;
   width: 100%;
-  height: 2rem;
 }
 .vuc-scroll-wrap>.vuc-discover{
   flex: 1;
