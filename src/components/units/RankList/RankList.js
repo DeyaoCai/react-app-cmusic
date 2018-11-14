@@ -41,46 +41,12 @@ export default function (props) {
     // "22": "云音乐ACG",
     // "23": "云音乐说唱榜",
   };
-  // 0 "云音乐新歌榜"
-  // 1 "云音乐热歌榜"
-  // 2 "网易原创歌曲榜"
-  // 3 "云音乐飙升榜"
-  // 4 "云音乐电音榜"
-  // 5 "UK排行榜周榜"
-  // 6 "美国Billboard周榜"
-  // 7 "KTV唛榜"
-  // 8 "iTunes榜"
-  // 9 "Hit FM Top榜"
-  // 10 "日本Oricon周榜"
-
-  // 14 "中国TOP排行榜（港台榜）"
-  // 15 "中国TOP排行榜（内地榜）"
-  // 16 "香港电台中文歌曲龙虎榜"
-
-  // 18 "中国嘻哈榜"
-  // 20 "台湾Hito排行榜"
-  // 21 "Beatport全球电子舞曲榜"
-  // 22 "云音乐ACG音乐榜"
-  // 23 "江小白YOLO云音乐说唱榜"
-
-  // -1 "公告牌音乐榜"
-  // -1 "抖音排行榜"
-  // -1 "云音乐国电榜"
-  // -1 "云音乐古典音乐榜"
-  // -1 "云音乐韩语榜"
-  // -1 "英国Q杂志中文版周榜"
-  // -1 "电竞音乐榜"
-
-
-
 
   const arr = Object.values(map);
   function getCode(rank,i) {
     const index = arr.findIndex(key=>new RegExp(key).test(rank.name));
     return index;
   }
-
-
 
   const constent = (<Wrap stop={true} config={{
     head: (<Header config={headerConf}/>),

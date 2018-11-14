@@ -9,10 +9,10 @@ import $http from "../../http/http";
 const  scrollConf= tools.scrollConf;
 const {copy} = ctools;
 const {
-  RecmendActs, List, SheetCatlist, RankList, SearchList
+  SearchList
 } = units;
 const {
-  Wrap,Search,FootNav, Tab, Place, Scroll,Header,Icon,
+  Wrap,Search,Place, Scroll,Header,Icon,
 } = comps;
 // 播放歌曲
 
@@ -84,12 +84,6 @@ export  default function Discover(props) {
       {tabConf: {name: "排行榜", icon: "456"}, onClick: getToplistDetail},
     ]
   };
-
-
-  const navConf= {
-    index: discoverTabIndex.index,
-    list: [{name: "个性推荐",}, {name: "主播电台",}],
-  };
   discoverTabIndex.upDateIndexOnEnd = ()=>{
     $actions.setDiscoverTabIndex(discoverTabIndex.index);
   };
@@ -109,7 +103,7 @@ export  default function Discover(props) {
 
   return (<Wrap config={{
     head:<Header config={{
-      left: (<Icon icon={"back1"} handerclick={()=>{}}/>),
+      left: (<Icon icon={"back1"} handerclick={()=>$actions.setSongSearch({active: false})}/>),
       title: (<Search key={0} config={songSearch} $actions={$actions} playASong={playASong}/>),
       right: (<Icon icon={"gengduo1"}/>),
     }}/>,
