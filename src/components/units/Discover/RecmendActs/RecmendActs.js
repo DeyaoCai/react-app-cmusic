@@ -5,7 +5,7 @@ const {PopUp,Icon} = comps;
 export default function (props) {
   const {config, $actions,playASong,} = props;
   const func = {setConf: $actions.setActionsList, full: false, derction: "", flex: false, stop: false};
-  const {Wrap,Header,} = comps;
+  const {Wrap} = comps;
   const constent = (<div className="recmend-act">
     <div>歌曲：白石溪 （Cover洛天依/乐正绫）</div>
     <ul>

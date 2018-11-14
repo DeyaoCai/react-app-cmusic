@@ -7,7 +7,7 @@ const {copy} = ctools;
 const { scrollConf} = tools;
 const {PopUp,Icon,Scroll} = comps;
 export default function (props) {
-  const {config, $actions,playASong,setConf,setConfAct,title, type} = props;
+  const {config, playASong,setConf,setConfAct,title, type} = props;
   const {Wrap,Header,HeadNormal} = comps;
 
   function hidePop(e){setConf({active: false});}
@@ -32,9 +32,9 @@ export default function (props) {
         index < 20 && (<li className="vuc-list-song" key={index} onClick={()=>playASong(item.id)}>
           <img src={
             item.picUrl ||
-            item.album && item.album.picUrl ||
-            item.al && item.al.picUrl ||
-            item.song && item.song.album && item.song.album.picUrl
+            (item.album && item.album.picUrl) ||
+            (item.al && item.al.picUrl) ||
+            (item.song && item.song.album && item.song.album.picUrl)
           } alt=""/>
           <div><div>{item.name}</div><span>{(item.ar || item.artists) && (item.ar || item.artists).map(item=>item.name).join(" ")}</span></div>
           <Icon icon={"gengduo1"} handerclick={()=>openAct(item)}/>

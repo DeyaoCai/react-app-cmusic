@@ -7,10 +7,9 @@ const {copy} = ctools;
 const { scrollConf} = tools;
 const {PopUp,Icon,Scroll} = comps;
 export default function (props) {
-  const {config, $actions,playASong,setConf,setConfAct,title, type} = props;
-  const {Wrap,Header,HeadNormal} = comps;
+  const {config,playASong,setConf,setConfAct,type} = props;
+  const {Wrap} = comps;
 
-  function hidePop(e){setConf({active: false});}
   function openAct(songDto){
     setConfAct({show:true, songDto: songDto});
     setTimeout(() => {setConfAct({active:true});},50);
@@ -38,6 +37,7 @@ export default function (props) {
   }
   const constent = (<Wrap stop={true} config={{
     content: (<Scroll config={copy(scrollConf,{derction: "y", itemNum:{x:1,y:1},})}><div className="vuc-search-list-wrap">
+      {0 && topFn}
       <div className="list-mid">
         <span>播放全部</span>
         <span>收藏</span>

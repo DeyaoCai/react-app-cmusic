@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Tab.css";
 import ctools from "ctools";
-const {getClass, getStyle} = ctools;
+const {getClass} = ctools;
 export default function(props){const {config,setIndex} = props;
   const { list, index,} = config;
   return (<div className="vuc-tab"><i style={{left: index.x*100/list.length + 25 +"%"}}></i>{

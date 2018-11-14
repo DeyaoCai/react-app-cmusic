@@ -105,7 +105,7 @@ class Scroll extends React.Component {
     const wrap = { x: $el.offsetWidth, y: $el.offsetHeight, };
 
     // x 周因为 元素最大为100%，顾需要手动计算 y轴不用
-    let ix = $ele.offsetWidth * (this.props.config.itemNum && this.props.config.itemNum.x || 0);
+    let ix = $ele.offsetWidth * ((this.props.config.itemNum && this.props.config.itemNum.x) || 0);
     let iy = $ele.offsetHeight;
 
     // 当不能根据容器的体积计算出滚动长度的时候， 我们需要根据他的子节点的宽度来让其滚动

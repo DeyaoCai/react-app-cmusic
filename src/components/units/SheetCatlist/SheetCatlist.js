@@ -7,7 +7,7 @@ const  scrollConf= tools.scrollConf;
 const {copy} = ctools;
 const {PopUp,Icon,Scroll} = comps;
 export default function (props) {
-  const {config, $actions,getSheet,setConf,setConfAct,title, type} = props;
+  const {config, getSheet,setConf} = props;
   const {Wrap,Header,HeadNormal} = comps;
   function hidePop(e){setConf({active: false});}
   const headerConf = {

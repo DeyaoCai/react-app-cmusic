@@ -7,12 +7,12 @@ import comps from "../../components/comps.js";
 import tools from "../../components/tools.js";
 import Discover from "../Discover/Discover.js";
 
-const {copy, scrollConf} = tools;
+const {copy} = tools;
 const {
-  RecmendActs, List, SheetCatlist, RankList,
+  RecmendActs, List, SheetCatlist, RankList,Audio
 } = units;
 const {
-  Wrap,Search,FootNav, Tab, Place, Scroll
+  Wrap,FootNav,Scroll
 } = comps;
 
 // 播放歌曲
@@ -57,11 +57,11 @@ export default (conf) => {
 
   const {
     $actions,
-    songList, sheetList, djprogramList, actionsList, sheetCatList, rankList,navTabIndex,discoverTabIndex,songSearch,
+    songList, sheetList, actionsList, sheetCatList, rankList,navTabIndex,discoverTabIndex,songSearch,
   } = conf;
 
   const discoverConf={
-    discoverTabIndex,showSongList,showSheetList,songSearch,onRightEnd, onLeftEnd,playASong,setConfAct
+    discoverTabIndex,showSongList,showSheetList,songSearch,onRightEnd, onLeftEnd,playASong
   };
   const navConf= {
     index: navTabIndex.index,
@@ -114,6 +114,7 @@ export default (conf) => {
         setConfAct={setConfAct}
         config={songList}/>
       <RecmendActs key={13} config={actionsList} $actions={$actions}/>
+      <Audio/>
     </div>),
     foot:(
       <FootNav config={navConf} setIndex={setNavIndex}/>

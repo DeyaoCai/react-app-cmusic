@@ -1,7 +1,7 @@
 import React from 'react';
-import comps from "../../../comps.js";
+import comps from "../../comps.js";
 import "./Audio.css"
-import tools from "../../../tools.js";
+import tools from "../../tools.js";
 import ctools from "ctools";
 const {copy} = ctools;
 const { scrollConf} = tools;
