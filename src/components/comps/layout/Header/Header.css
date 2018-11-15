@@ -1,6 +1,7 @@
 .vuc-header{
   position: relative;
   text-align: center;
+  z-index: 2;
 }
 .vuc-header>div:nth-child(1){
   position: relative;

@@ -22,7 +22,7 @@ export default function (props) {
   };
   const confFn = {
     sheetList: () => config.list.map((item,index) =>
-      index < 20 && (<li className="vuc-list-sheet" key={index} onClick={(ev)=>playASong(item,ev)}>
+      index < 20 && (<li className="vuc-list-sheet" key={index} onClick={(ev)=>playASong(item.id,ev)}>
         <img src={item.picUrl || item.coverImgUrl} alt=""/>
         <div>{item.name}</div>
       </li>)

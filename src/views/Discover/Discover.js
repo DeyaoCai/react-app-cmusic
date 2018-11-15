@@ -19,11 +19,14 @@ const {
 export  default function Discover(props) {
   const {config,onLeftEnd,onRightEnd,$actions} = props;
   const {
-    discoverTabIndex,showSongList,showSheetList,songSearch,playASong,setConfAct,showPlayPage
+    discoverTabIndex,showSongList,showSheetList,songSearch,playASong,setConfAct,
   } = config;
   discoverTabIndex.onLeftEnd = onLeftEnd;
   discoverTabIndex.onRightEnd = onRightEnd;
-
+  function showPlayPage() {
+    $actions.setPlayconf({show:true});
+    setTimeout(() => $actions.setPlayconf({active:true}),50);
+  }
   // 每日推荐 // 歌曲 // 歌单
   function getRecommendSongs() {
     $http.recommendSongs()(res=>{
@@ -103,7 +106,7 @@ export  default function Discover(props) {
 
   return (<Wrap config={{
     head:<Header config={{
-      left: (<Icon icon={"back1"} handerclick={()=>$actions.setSongSearch({active: false})}/>),
+      left: (<Icon icon={"5"} handerclick={()=>$actions.setSongSearch({active: false})}/>),
       title: (<Search key={0} config={songSearch} $actions={$actions} playASong={playASong}/>),
       right: (<Icon icon={"gengduo1"} handerclick={showPlayPage}/>),
     }}/>,

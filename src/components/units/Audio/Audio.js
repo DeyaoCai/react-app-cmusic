@@ -6,6 +6,7 @@ import ctools from "ctools";
 const {copy} = ctools;
 const { scrollConf} = tools;
 const {PopUp,Icon,Scroll} = comps;
+
 export default function (props) {
   const {config, $actions,playASong,setConfAct,title, type} = props;
   const {Wrap,Header,HeadNormal} = comps;
@@ -22,13 +23,23 @@ export default function (props) {
   };
   const constent = (<Wrap stop={true} config={{
     head: (<Header config={headerConf}/>),
-    content: (<Scroll config={copy(scrollConf,{derction: "y", itemNum:{x:1,y:1},})}>
+    content: (<Scroll config={copy(scrollConf,{derction: "xy", itemNum:{x:1,y:1},})}>
       <div className="vuc-audio-cont">
         <b style={{
-          backgroundImage: `url(${songDto && songDto.album && songDto.album.blurPicUrl})`
+          backgroundImage: `url(${
+            songDto.picUrl ||
+            (songDto.album && songDto.album.picUrl) ||
+            (songDto.al && songDto.al.picUrl) ||
+            (songDto.song && songDto.song.album && songDto.song.album.picUrl)
+          })`
         }}/>
         <span onClick={togglePlay} className="vuc-audio-img" style={{
-          backgroundImage: `url(${songDto && songDto.album && songDto.album.blurPicUrl})`
+          backgroundImage: `url(${
+            songDto.picUrl ||
+              (songDto.album && songDto.album.picUrl) ||
+              (songDto.al && songDto.al.picUrl) ||
+              (songDto.song && songDto.song.album && songDto.song.album.picUrl)
+            })`
         }}/>
       </div>
     </Scroll>),

@@ -33,11 +33,10 @@ export default (conf) => {
   }
 // 播放歌曲
   function playASong(songDto,ev){
-    $http.songUrl({id: songDto.id || songDto})(res=>{
+    songDto && $http.songUrl({id: songDto.id || songDto})(res=>{
       const audio = document.querySelector("#audio");
       audio.src = res.data[0].url;
       showPlayPage(songDto);
-      console.log(songDto)
     })
   };
   function showPlayPage(songDto) {
@@ -67,7 +66,7 @@ export default (conf) => {
   } = conf;
 
   const discoverConf={
-    discoverTabIndex,showSongList,showSheetList,songSearch,onRightEnd, onLeftEnd,playASong,showPlayPage
+    discoverTabIndex,showSongList,showSheetList,songSearch,onRightEnd, onLeftEnd,playASong,
   };
   const navConf= {
     index: navTabIndex.index,
