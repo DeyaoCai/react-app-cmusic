@@ -18,10 +18,10 @@
     "warning": "^4.0.2"
   },
   "scripts": {
-    "push-not-publish": "push --push --not-publish",
+    "push-not-publish": "push",
     "start": "set PORT=3334 && react-scripts start",
+    "dev": "react-scripts start",
     "read": "ctools read",
-    "i ctools": "npm i ctools",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

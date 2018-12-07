@@ -1,5 +1,5 @@
 .vuc-foot-nav{
-  border-top: 1px solid #543;
+  border-top: 1px solid #ffdb00;
   line-height: 2.25rem;
   display: flex;
   text-align: center;
@@ -12,10 +12,10 @@
   border-radius: 2rem;
 }
 .vuc-foot-nav>*.active{
-  color: #c75;
+  color: #ffdb00;
 }
 .vuc-foot-nav>*:active{
   border-radius: 0;
-  color: #c75;
+  color: #ffdb00;
   background-color: #141617;
 }

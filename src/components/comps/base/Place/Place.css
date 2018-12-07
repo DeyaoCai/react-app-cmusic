@@ -9,6 +9,7 @@
   font-size: .6rem;
   line-height: 1.5rem;
   border-bottom: 1px solid #222;
+  color: #ffdb00;
 }
 .vuc-place>*:before{
   content: "role";
