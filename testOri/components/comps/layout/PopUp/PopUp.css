@@ -1,0 +1,62 @@
+.vuc-popup{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+  transition: all .6s;
+  background-color: rgba(0,0,0,0);
+}
+.vuc-popup.show,
+.vuc-popup.active{
+  display: block;
+}
+.vuc-popup.active{
+  background-color: rgba(0,0,0,.3);
+}
+.vuc-popup>div{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-orient:vertical;
+  transform: translate(0,100%);
+  opacity: 0;
+  transition: all .6s;
+}
+.vuc-popup.top>div{
+  transform: translate(0,-100%);
+}
+.vuc-popup.bottom>div{
+  transform: translate(0,100%);
+}
+.vuc-popup.left>div{
+  transform: translate(-100%,0);
+}
+.vuc-popup.right>div{
+  transform: translate(100%,0);
+}
+.vuc-popup.active>div{
+  transform: translate(0,0);
+  opacity: 1;
+}
+.vuc-popup-up,
+.vuc-popup-down{
+  flex: 1;
+}
+.vuc-popup-content{
+  position: relative;
+}
+.vuc-popup.full>div>.vuc-popup-content{
+  height: 100%;
+}
+.vuc-popup.flex>div>.vuc-popup-content{
+  display: flex;
+  flex-direction: column;
+  box-orient:vertical;
+}
+.vuc-popup-up.none,
+.vuc-popup-down.none{
+  display: none;
+}

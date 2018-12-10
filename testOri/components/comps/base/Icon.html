@@ -1,0 +1,35 @@
+<script>
+    import React from 'react';
+    import ctools from "ctools";
+
+    import "./Icon.css";
+    export  default  function(props){
+        function handerclick(e){
+            props.handerclick && props.handerclick(e);
+            e.stopPropagation();
+            e.preventDefault();
+        }
+        const wrapClass = ctools.getClass("vuc-icon","iconfont",props.icon && ("icon-"+props.icon));
+        return (<div className={wrapClass} onClick={handerclick}></div>)
+    }
+
+</script>
+<style>
+    .vuc-icon{
+        font-size: .75rem;
+        font-family: "iconfont" !important;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        width: 2.5rem;
+        line-height: 2.5rem;
+        background-color: rgba(255,255,255,0);
+        border-radius: 1.5rem;
+        transition: all 1s;
+        text-align: center;
+        display: inline-block;
+    }
+    .vuc-icon:active{
+        background-color: rgba(255,255,255,.2);
+        border-radius: 0;
+    }
+</style>

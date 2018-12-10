@@ -1,0 +1,23 @@
+
+    .vuc-foot-nav{
+        border-top: 1px solid #ffdb00;
+        line-height: 2.25rem;
+        display: flex;
+        text-align: center;
+    }
+    .vuc-foot-nav>*{
+        flex: 1;
+        font-size: .6rem;
+        transition: all .3s;
+        text-shadow: 0 .1rem .1rem #141617;
+        border-radius: 2rem;
+    }
+    .vuc-foot-nav>*.active{
+        color: #ffdb00;
+    }
+    .vuc-foot-nav>*:active{
+        border-radius: 0;
+        color: #ffdb00;
+        background-color: #141617;
+    }
+

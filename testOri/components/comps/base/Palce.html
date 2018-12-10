@@ -1,0 +1,34 @@
+<script>
+    import React from 'react';
+    import "./Place.css";
+    export default function(props){
+        const {config} = props;
+        const {funcList} = config;
+        return (<div className="vuc-place">
+            {funcList.map((item, index) => (<span key={index} onClick={item.onClick}>{item.tabConf.name}</span>))}
+        </div>)
+    }
+
+</script>
+<style>
+    .vuc-place{
+        display: flex;
+        position: relative;
+    }
+    .vuc-place>*{
+        flex: 1;
+        padding: .2rem;
+        text-align: center;
+        font-size: .6rem;
+        line-height: 1.5rem;
+        border-bottom: 1px solid #222;
+        color: #ffdb00;
+    }
+    .vuc-place>*:before{
+        content: "role";
+        display: block;
+        padding: .6rem;
+        text-align: center;
+    }
+
+</style>

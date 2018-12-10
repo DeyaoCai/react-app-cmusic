@@ -1,0 +1,19 @@
+.vuc-header{
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+.vuc-header>div:nth-child(1){
+  position: relative;
+}
+.vuc-header>div:nth-child(2),
+.vuc-header>div:nth-child(3){
+  position: absolute;
+  top: 0;
+}
+.vuc-header>div:nth-child(2){
+  left: 0;
+}
+.vuc-header>div:nth-child(3){
+  right: 0;
+}

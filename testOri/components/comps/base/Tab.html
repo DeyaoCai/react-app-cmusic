@@ -1,0 +1,41 @@
+<script>
+    import React from 'react';
+    import "./Tab.css";
+    import ctools from "ctools";
+    const {getClass} = ctools;
+    export default function(props){const {config,setIndex} = props;
+        const { list, index,} = config;
+        return (<div className="vuc-tab"><i style={{left: index.x*100/list.length + 25 +"%"}}></i>{
+            list.map((item,i) => (<span key={i} className={getClass({active: index.x === i})} onClick={()=>setIndex(i)}>{item.name}</span>))
+        }</div>)
+    }
+
+</script>
+<style>
+    .vuc-tab{
+        display: flex;
+        position: relative;
+    }
+    .vuc-tab>*{
+        flex: 1;
+        text-align: center;
+        font-size: .75rem;
+        line-height: 2rem;
+        border-bottom: 1px solid #222;
+        transition: all .5s;
+    }
+    .vuc-tab>i{
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        width: 15%;
+        transform: translateX(-50%);
+        border-bottom: 3px solid #c75;
+        transition: all .5s;
+    }
+    .vuc-tab>*.active{
+        color: #c75;
+    }
+
+</style>

@@ -1,0 +1,27 @@
+
+    .vuc-tab{
+        display: flex;
+        position: relative;
+    }
+    .vuc-tab>*{
+        flex: 1;
+        text-align: center;
+        font-size: .75rem;
+        line-height: 2rem;
+        border-bottom: 1px solid #222;
+        transition: all .5s;
+    }
+    .vuc-tab>i{
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        width: 15%;
+        transform: translateX(-50%);
+        border-bottom: 3px solid #c75;
+        transition: all .5s;
+    }
+    .vuc-tab>*.active{
+        color: #c75;
+    }
+

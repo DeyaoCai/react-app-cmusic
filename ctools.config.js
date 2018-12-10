@@ -35,6 +35,14 @@ const viewConf = {
   exportMode: "vueView",
   bizType: "train",
 }
+const reactConf = {
+    readType: "single file",
+    inputPath: ["./testOri",],
+    outputPath: "./testSrc",
+    fileReg: /\.(html)$/,
+    succMsg: "write reactConf success!",
+}
 module.exports = [
-  toolConf, compConf, unitConf, viewConf
+  toolConf, compConf, unitConf, viewConf,
+  // reactConf
 ];

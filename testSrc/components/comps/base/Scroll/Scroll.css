@@ -1,0 +1,38 @@
+
+    /*滚动开始*/
+    .vuc-scroll{
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+    }
+    .vuc-scroll-wrap{
+        width: 100%;
+        min-height: 100%;
+        position: relative;
+        white-space: nowrap;
+        font-size: 0;
+        display: flex;
+        flex-direction: column;
+        box-orient:vertical;
+        will-change: transfrom,transition;
+    }
+    .vuc-scroll-wrap.x{
+        height: 100%;
+    }
+    /*滚动结束*/
+    /*滚动开始*/
+    .vue-scroll-reflash,
+    .vue-scroll-loadmore{
+        text-align: center;
+        line-height: 2.5rem;
+        overflow: hidden;
+        height: 0;
+        opacity: 0;
+        transition: all .3s;
+    }
+    .vue-scroll-reflash.active,
+    .vue-scroll-loadmore.active{
+        height: 2.5rem;
+        opacity: 1;
+    }
+

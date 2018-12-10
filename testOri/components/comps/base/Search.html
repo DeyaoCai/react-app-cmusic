@@ -1,0 +1,84 @@
+<script>
+    import React from 'react';
+    import "./Search.css";
+    import $http from "../../../../http/http.js";
+    let lastInputTime = 0;
+
+    export default function(props){
+        const {config,$actions} = props;
+
+        function onInput(ev){
+            const text = ev.target.value;
+            lastInputTime = new Date().getTime();
+            setTimeout(()=>{
+                if (new Date().getTime() - 300 >= lastInputTime){
+                    searchSongs(text)
+                }
+            },310)
+        }
+        function searchSongs(text) {
+            $http.search({keywords: encodeURI(text)})(res =>{
+                $actions.setSongSearch({list: res.result.songs});
+            })
+        }
+        function onBlur(ev){ev.target.value || hidePop();}
+        function hidePop() {$actions.setSongSearch({active: false});}
+        function showSongSearch() {
+            $actions.setSongSearch({show:true});
+            setTimeout(() => $actions.setSongSearch({active:true}), 50);
+        }
+        return (<div className="vuc-search">
+            <input onInput={onInput} onFocus={showSongSearch} onBlur={onBlur} type="text"/>
+        </div>)
+    }
+
+</script>
+<style>
+    .vuc-search{
+        display: flex;
+        padding: .5rem 2.5rem;
+        border-bottom: 1px solid #543;
+    }
+
+    .vuc-search input{
+        line-height: .9rem;
+        padding: .3rem .6rem;
+        width: 100%;
+        color: #fff;
+        transition: all .3s;
+        border-radius: .2rem;
+        background-color:  rgba(255,255,255,.2);
+        border: 1px solid rgba(255,255,255,.4);
+    }
+    .vuc-search input:focus{
+        background-color:  rgba(255,255,255,.1);
+    }
+    .vuc-search>span:first-child,
+    .vuc-search>span:last-child{
+        flex: 1;
+        text-align: center;
+    }
+    .vuc-search>span:nth-child(2){
+        background-color: #c75;
+        flex: 3;
+        border-radius: .15rem;
+        box-shadow: 0 .2rem .5rem #141617;
+    }
+    .vuc-search>span:nth-child(2)>input{
+        display: block;
+        text-shadow: 0 .1rem .1rem #282c34;
+        background-color: transparent;
+        color: #fff;
+        padding: 0 .4rem;
+        width: 100%;
+        height: 100%;
+        opacity: .5;
+        transition: all .6s;
+        border-bottom: 1px solid #ccc;
+        border-radius: .15rem;
+    }
+    .vuc-search>span:nth-child(2)>input:focus{
+        opacity: 1;
+    }
+
+</style>
